@@ -9,32 +9,30 @@ namespace l1t2
 {
     internal class Program
     {
-        public delegate void del1(int elem, int k, List<int> arr);
-        public delegate void del2(int elem);
+        public delegate void OutputDel(int elem);
 
         static void Main(string[] args)
         {
-            #region Setup
-            Console.Write("Enter your array: ");
-            int[] startArr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            OutputDel output = Out;
 
-            Console.Write("Enter k: ");
-            int k = int.Parse(Console.ReadLine());
+            int[] startArr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int k = 2;
 
-            List<int> finalArr = new List<int>();
-            #endregion
+            int[] finalArr_Own = ArrayMod.Execute_Own(startArr, k);
+            int[] finalArr_Lib = ArrayMod.Execute_Lib(startArr, k);
 
-            del1 d1 = Check;
-            for (int i = 0; i < startArr.Length; i++) d1(startArr[i], k, finalArr);
+            Console.Write("Start arr: ");
+            foreach (int elem in startArr) output(elem);
 
-            del2 d2 = Out;
-            Console.Write("Final arr: ");
-            foreach (int elem in finalArr) d2(elem);
+            Console.Write("\nFinal arr (own): ");
+            foreach (int elem in finalArr_Own) output(elem);
+            Console.Write("\nFinal arr (lib): ");
+            foreach (int elem in finalArr_Lib) output(elem);
 
             Console.ReadKey();
         }
 
-        static void Check(int elem, int k, List<int> arr) { if (elem % k == 0) arr.Add(elem); }
-        static void Out(int elem) => Console.Write(elem);
+
+        static void Out(int elem) => Console.Write($"{elem} ");
     }
 }
