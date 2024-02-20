@@ -12,15 +12,15 @@ namespace l1t1
     {
         private static bool running = true;
 
-        public static void Start(Action action, int ms, ConsoleKey stopKey)
+        public static void Start(Action action, int s, ConsoleKey stopKey)
         {
-            Console.WriteLine("Multi thread timer was started. Interval: {0}s, Exit key: {1}", ms, stopKey);
+            Console.WriteLine("Multi thread timer was started. Interval: {0}s, Exit key: {1}", s, stopKey);
 
             Thread thread = new Thread(() => { 
-                while (running) 
+                while (running)
                 {
-                    Thread.Sleep(ms * 1000);
                     action();
+                    Thread.Sleep(s * 1000);
 
                     if (Console.KeyAvailable)
                     {

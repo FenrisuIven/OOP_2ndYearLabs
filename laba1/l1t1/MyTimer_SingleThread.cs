@@ -10,12 +10,12 @@ namespace l1t1
     public class MyTimer_SingleThread
     {
         private static bool running = true;
-        public static void Start(Action action, int ms, ConsoleKey stopKey)
+        public static void Start(Action action, int s, ConsoleKey stopKey)
         {
-            Console.WriteLine("Single thread timer was started. Interval: {0}s, Exit key: {1}", ms, stopKey);
+            Console.WriteLine("Single thread timer was started. Interval: {0}s, Exit key: {1}", s, stopKey);
             while (running)
             {
-                System.Threading.Thread.Sleep(ms * 1000);
+                System.Threading.Thread.Sleep(s * 1000);
                 action();
 
                 if (Console.KeyAvailable)
@@ -32,9 +32,3 @@ namespace l1t1
         }
     }
 }
-
-
-#region Used sources
-//Getting keyboard input from console
-//https://stackoverflow.com/questions/63818349/c-sharp-net-console-application-getting-keyboard-input
-#endregion

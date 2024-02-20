@@ -9,30 +9,32 @@ namespace l1t2
 {
     internal class Program
     {
-        public delegate void OutputDel(int elem);
+        public delegate int[] operationDel(int[] arr, int k, Func<int, bool> func);
 
         static void Main(string[] args)
         {
-            OutputDel output = Out;
+            Console.Write("Input array: ");
+            int[] startArr = Array.ConvertAll(Console.ReadLine().Trim().Split(), int.Parse);
+            Console.Write("Input k: ");
+            int k = int.Parse(Console.ReadLine());
+            Func<int, bool> func = (elem) => (elem % k == 0);
 
-            int[] startArr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            int k = 2;
 
-            int[] finalArr_Own = ArrayMod.Execute_Own(startArr, k);
-            int[] finalArr_Lib = ArrayMod.Execute_Lib(startArr, k);
+            operationDel operation = ArrayMod.Execute_Own;
+            int[] finalArr_Own = operation(startArr, k, func);
 
-            Console.Write("Start arr: ");
-            foreach (int elem in startArr) output(elem);
+            operation = ArrayMod.Execute_Linq;
+            int[] finalArr_Linq = operation(startArr, k, func);
 
-            Console.Write("\nFinal arr (own): ");
-            foreach (int elem in finalArr_Own) output(elem);
-            Console.Write("\nFinal arr (lib): ");
-            foreach (int elem in finalArr_Lib) output(elem);
+
+
+            Console.Write("\nStart arr:\t\t" + string.Join(" ", startArr));
+
+            Console.Write("\nFinal arr (own):\t" + string.Join(" ", finalArr_Own));
+
+            Console.Write("\nFinal arr (linq):\t" + string.Join(" ", finalArr_Linq));
 
             Console.ReadKey();
         }
-
-
-        static void Out(int elem) => Console.Write($"{elem} ");
     }
 }
