@@ -31,15 +31,15 @@
         <Button Name="btnC"     Content="C"  HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="50" Height="45"/>
 
         <Button Name="btnBack"      Content="←" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Width="50" Height="45"/>
-        <Button Name="btnDide"      Content="÷" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45"/>
-        <Button Name="btnMultiply"  Content="×" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45"/>
+        <Button Name="btnDide"      Content="÷" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnDide_Click"/>
+        <Button Name="btnMultiply"  Content="×" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnMultiply_Click"/>
         <Button Name="btnMinus"     Content="-" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnMinus_Click"/>
 
         <Button Name="btnPlus"  Content="+"  HorizontalAlignment="Center" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnPlus_Click"/>
         <Button Name="btn00"    Content="00" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Width="50" Height="45" Click="btn00_Click"/>
         <Button Name="btn0"     Content="0"  HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Width="50" Height="45" Click="btn0_Click"/>
         <Button Name="btnDot"   Content="."  HorizontalAlignment="Center" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Width="50" Height="45"/>
-        <Button Name="btnEqual" Content="="  HorizontalAlignment="Center" Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45"/>
+        <Button Name="btnEqual" Content="="  HorizontalAlignment="Center" Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnEqual_Click"/>
 
         <Button Name="btn1" Content="1" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Width="50" Height="45" 
                 Click="btn1_Click"/>

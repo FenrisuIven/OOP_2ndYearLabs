@@ -40,7 +40,7 @@ namespace laba2
             DisplayInput();
         }
 
-        #region Digit Buttons
+#region Digit Buttons
         private void btn1_Click(object sender, RoutedEventArgs e) => AddToLists("1");
         private void btn2_Click(object sender, RoutedEventArgs e) => AddToLists("2");
         private void btn3_Click(object sender, RoutedEventArgs e) => AddToLists("3");
@@ -52,8 +52,9 @@ namespace laba2
         private void btn9_Click(object sender, RoutedEventArgs e) => AddToLists("9");
         private void btn0_Click(object sender, RoutedEventArgs e) => AddToLists("0");
         private void btn00_Click(object sender, RoutedEventArgs e) => AddToLists("00");
-        #endregion
+#endregion
 
+#region Operations
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             ReformatInputList();
@@ -71,6 +72,31 @@ namespace laba2
             OpButtonAction('-');
         }
 
+        private void btnMultiply_Click(object sender, RoutedEventArgs e)
+        {
+            ReformatInputList();
+            AddToLists("×");
+            rememberNum = true;
+            OpButtonAction('×');
+        }
+
+        private void btnDide_Click(object sender, RoutedEventArgs e)
+        {
+            ReformatInputList();
+            AddToLists("÷");
+            rememberNum = true;
+            OpButtonAction('÷');
+        }
+#endregion
+
+        private void btnEqual_Click(object sender, RoutedEventArgs e)
+        {
+            OpButtonAction('=');
+            prevAction = new char();
+            txtInput.Text = " ";
+            input = new List<string>();
+            rememberNum = false;
+        }
 
         public void OpButtonAction(char op)
         {
@@ -81,8 +107,8 @@ namespace laba2
                 txtOutput.Text = $"{res}";
                 return;
             }
-            latestNum.RemoveAt(latestNum.Count - 1);
-            string lastNum = string.Join("", latestNum);
+            if (op != '=') latestNum.RemoveAt(latestNum.Count - 1);
+            string lastNum = latestNum.Count != 1 ? string.Join("", latestNum) : latestNum.ElementAt(0);
             latestNum = new List<string>();
 
             switch (prevAction)
@@ -93,6 +119,14 @@ namespace laba2
 
                 case '-':
                     res -= double.Parse(lastNum);
+                    break;
+
+                case '×':
+                    res *= double.Parse(lastNum);
+                    break;
+
+                case '÷':
+                    res /= double.Parse(lastNum);
                     break;
             }
             prevAction = Convert.ToChar(input.ElementAt(input.Count - 1));
