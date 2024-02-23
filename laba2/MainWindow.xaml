@@ -1,0 +1,56 @@
+﻿<Window x:Name="window" x:Class="laba2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:laba2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="250"
+        WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Disabled" MaxHeight="450" MaxWidth="250" MinHeight="450" MinWidth="250">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="txtInput" Grid.Row="0" Grid.ColumnSpan="4" 
+                 TextAlignment="Right" Text="0" FontSize="20" IsReadOnly="True" Margin="10,10,10,40" HorizontalContentAlignment="Right"/>
+        <TextBox Name="txtOutput" Grid.Row="0" Grid.ColumnSpan="4" 
+                 TextAlignment="Right" Text="0" FontSize="20" IsReadOnly="True" Margin="10,110,10,10" HorizontalContentAlignment="Right"/>
+
+        <Button Name="btnCE"    Content="CE" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Width="50" Height="45"/>
+        <Button Name="btnC"     Content="C"  HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="50" Height="45"/>
+
+        <Button Name="btnBack"      Content="←" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Width="50" Height="45"/>
+        <Button Name="btnDide"      Content="÷" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45"/>
+        <Button Name="btnMultiply"  Content="×" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45"/>
+        <Button Name="btnMinus"     Content="-" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnMinus_Click"/>
+
+        <Button Name="btnPlus"  Content="+"  HorizontalAlignment="Center" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnPlus_Click"/>
+        <Button Name="btn00"    Content="00" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Width="50" Height="45" Click="btn00_Click"/>
+        <Button Name="btn0"     Content="0"  HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Width="50" Height="45" Click="btn0_Click"/>
+        <Button Name="btnDot"   Content="."  HorizontalAlignment="Center" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Width="50" Height="45"/>
+        <Button Name="btnEqual" Content="="  HorizontalAlignment="Center" Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45"/>
+
+        <Button Name="btn1" Content="1" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Width="50" Height="45" 
+                Click="btn1_Click"/>
+        <Button Name="btn2" Content="2" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Width="50" Height="45" Click="btn2_Click"/>
+        <Button Name="btn3" Content="3" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Width="50" Height="45" Click="btn3_Click"/>
+        <Button Name="btn4" Content="4" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Width="50" Height="45" Click="btn4_Click"/>
+        <Button Name="btn5" Content="5" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Width="50" Height="45" Click="btn5_Click"/>
+        <Button Name="btn6" Content="6" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Width="50" Height="45" Click="btn6_Click"/>
+        <Button Name="btn7" Content="7" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Width="50" Height="45" Click="btn7_Click"/>
+        <Button Name="btn8" Content="8" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="50" Height="45" Click="btn8_Click"/>
+        <Button Name="btn9" Content="9" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Width="50" Height="45" Click="btn9_Click"/>
+
+    </Grid>
+</Window>
