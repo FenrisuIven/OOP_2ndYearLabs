@@ -134,7 +134,6 @@
         private Button b_OpacityChange;
         private Button b_BGColorChange;
         private Button b_Super;
-        private Button button2;
         private CheckBox checkBox1;
         private CheckBox checkBox2;
         private CheckBox checkBox3;
