@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,51 +10,55 @@ namespace l1t3
 {
     internal class Program
     {
-        delegate float del(float elem);
         static void Main(string[] args)
         {
-            del d1 = Series1;
-            del d2 = Series2;
-            del d3 = Series3;
+            Func<double, double>[] series = {
+                (num) => 1f / Math.Pow(2, num),
+                (num) => 1f / Factorial(num), 
+                (num) => 1f / UnevenPow(num)
+            };
+            double accuracy = .0000000001;
 
-            float res1 = Calculate(1, d1, 1);
-            Console.WriteLine("res1 = {0}\n", res1);
-            float res2 = Calculate(1, d2, 1);
-            Console.WriteLine("res2 = {0}\n", res2);
+            double series1 = CalculateSeries(series[0], accuracy);
+            double series2 = CalculateSeries(series[1], accuracy);
+            double series3 = CalculateSeries(series[2], accuracy);
 
+            Console.WriteLine($"Accuracy: {Output(accuracy)}\n");
+            Console.WriteLine($"Series 1:  1/2^0 + 1/2^1 + 1/2^2 + ... + 1/2^n" +
+                $"\nres:\t  {Output(series1)}\n");
+            Console.WriteLine($"Series 2:  1/1! + 1/2! + 1/3! + ... + 1/n!" +
+                $"\nres:\t  {Output(series2)}\n");
+            Console.WriteLine($"Series 3: -1/2^0 + 1/2^1 - 1/2^2 + ... ± 1/2^n" +
+                $"\nres:\t  {Output(series3)}\n");
 
             Console.ReadKey();
         }
 
-        static float Calculate(int acc, del d, float start)
+        public static double CalculateSeries(Func<double, double> func, double accuracy)
         {
-            float res = 0;
-            float elem = start;
-            res += (float)1.0 / start;
-
-            for (int count = 0; count < 20; count++)
+            double init = func(0);
+            double funcVal = init;
+            double sum = init;
+            for (int i = 1; Math.Abs(funcVal) >= accuracy; i++)
             {
-                elem = d(elem);
-                Console.WriteLine($"elem = {elem}");
-                res += (float)1.0/elem;
+                if (func(i) == funcVal) continue;
+                funcVal = func(i);
+                sum += funcVal;
             }
+            return sum;
+        }
 
+        static double Factorial(double num)
+        {
+            float res = 1;
+            for (int i = 2; i <= num; i++) res *= i;
             return res;
         }
-
-        static float Series1(float elem) { elem *= 2; return elem; }
-        static float Series2(float elem) 
-        { 
-            elem++; 
-
-            return elem; 
-        }
-        static float Series3(float elem) 
+        static double UnevenPow(double num)
         {
-            bool isNegative = elem < 0 ? true : false;
-            elem = Math.Abs(elem);
-            elem = isNegative ? elem * -1 : elem;
-            return elem;
+            return Math.Pow(2, num) * (num % 2 == 0? -1f : 1f);
         }
+
+        static string Output(double num) => $"{(num > 0 ? " " : "")}{num:0.##########}";
     }
 }
