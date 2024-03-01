@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="250"
         WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Disabled" MaxHeight="450" MaxWidth="250" MinHeight="450" MinWidth="250">
-    <Grid>
+    <Grid Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
@@ -22,6 +22,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
         <TextBox Name="txtInput" Grid.Row="0" Grid.ColumnSpan="4" 
                  TextAlignment="Right" Text="0" FontSize="20" IsReadOnly="True" Margin="10,10,10,40" HorizontalContentAlignment="Right"/>
         <TextBox Name="txtOutput" Grid.Row="0" Grid.ColumnSpan="4" 
@@ -51,6 +52,14 @@
         <Button Name="btn7" Content="7" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Width="50" Height="45" Click="btn7_Click"/>
         <Button Name="btn8" Content="8" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="50" Height="45" Click="btn8_Click"/>
         <Button Name="btn9" Content="9" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Width="50" Height="45" Click="btn9_Click"/>
+
+        <Button Name="btnRoot" Content="√" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" Width="50" Height="45" Click="btnRoot_Click" Visibility="Collapsed"/>
+        <Button Name="btnPow" Content="xⁿ" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="5" VerticalAlignment="Center" Width="50" Height="45" Click="btnPow_Click" Visibility="Collapsed"/>
+        <Button Name="btnPi" Content="π" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="5" VerticalAlignment="Center" Width="50" Height="45" Click="btnPi_Click" Visibility="Collapsed"/>
+        <Button Name="btnExp" Content="e" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="5" VerticalAlignment="Center" Width="50" Height="45" Click="btnExp_Click" Visibility="Collapsed"/>
+        <Button Name="btnLn" Content="ln" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="5" VerticalAlignment="Center" Width="50" Height="45" Click="btnLn_Click" Visibility="Collapsed"/>
+        
+        <Button Name="AddPannel" Content="≡" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Height="25" Margin="11,11,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="AddPannel_Click"/>
 
     </Grid>
 </Window>

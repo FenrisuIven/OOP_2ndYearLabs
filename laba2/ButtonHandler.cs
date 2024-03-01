@@ -12,6 +12,7 @@ namespace laba2
     {
         private List<string> currentNum = new List<string>();
         char op = new char();
+        bool firstOp = true;
 
         private void AddToList(string val, bool opAdded)
         {
@@ -30,20 +31,23 @@ namespace laba2
             op = Convert.ToChar(name);
 
             double num = double.Parse(currentNum.ElementAt(0));
-            switch (name)
+            if (!firstOp)
             {
-                case "+":
-                    calc.Add(num);
-                    break;
-                case "-":
-                    calc.Sub(num);
-                    break;
-                case "×":
-                    calc.Mul(num);
-                    break;
-                case "÷":
-                    calc.Div(num);
-                    break;
+                switch (name)
+                {
+                    case "+":
+                        calc.Add(num);
+                        break;
+                    case "-":
+                        calc.Sub(num);
+                        break;
+                    case "×":
+                        calc.Mul(num);
+                        break;
+                    case "÷":
+                        calc.Div(num);
+                        break;
+                }
             }
             currentNum = new List<string>();
 
@@ -71,6 +75,12 @@ namespace laba2
         private void btnMinus_Click(object sender, RoutedEventArgs e) => ButtonExec("-", true);
         private void btnMultiply_Click(object sender, RoutedEventArgs e) => ButtonExec("×", true);
         private void btnDide_Click(object sender, RoutedEventArgs e) => ButtonExec("÷", true);
+
+        private void btnRoot_Click(object sender, RoutedEventArgs e) => ButtonExec("√", true);
+        private void btnPow_Click(object sender, RoutedEventArgs e) => ButtonExec("ⁿ", true);
+        private void btnPi_Click(object sender, RoutedEventArgs e) => ButtonExec("π", true);
+        private void btnExp_Click(object sender, RoutedEventArgs e) => ButtonExec("e", true);
+        private void btnLn_Click(object sender, RoutedEventArgs e) => ButtonExec("l", true);
 
         private void btnEqual_Click(object sender, RoutedEventArgs e)
         {
