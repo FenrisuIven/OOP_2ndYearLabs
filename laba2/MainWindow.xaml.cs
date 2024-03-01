@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,16 +12,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using org.mariuszgromada.math.mxparser;
-using Expression = org.mariuszgromada.math.mxparser.Expression;
 
 namespace laba2
 {
-    //тут по логике может быть капец, не обращай внимания :)
-    //мне главное было заставить это все работать, я уже столько вариантов перепробовала шо це жесть
-    //пока гружу просто рабочую версию, почищу уже потом (тут много ненужного скорее всего)
     public partial class MainWindow : Window
     {
         private List<string> input = new List<string>();
+        private Calculator_Client calc = new Calculator_Client();
 
         public MainWindow() { InitializeComponent(); }
 
@@ -32,15 +30,19 @@ namespace laba2
 
         public void DisplayRes()
         {
-            Expression ex = new Expression(input.ElementAt(0));
-            txtOutput.Text = $"{ex.calculate()}";
+            txtOutput.Text = $"{calc.Out()}";
         }
 
-        public void ReformatInputList ()
+        public void ReformatInputList()
         {
             string temp = string.Join("", input);
             input = new List<string> { temp };
         }
 
+        public void ReformatCurrNum()
+        {
+            string temp = string.Join("", currentNum);
+            currentNum = new List<string> { temp };
+        }
     }
 }

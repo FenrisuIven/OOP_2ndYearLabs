@@ -10,47 +10,78 @@ namespace laba2
 {
     public partial class MainWindow
     {
-        private void AddToList(string val)
+        private List<string> currentNum = new List<string>();
+        char op = new char();
+
+        private void AddToList(string val, bool opAdded)
         {
             input.Add(val);
+            ReformatInputList();
             DisplayInput();
+            if (opAdded) return;
+            currentNum.Add(val);
         }
 
-        public void ButtonExec(string name)
+        public void ButtonExec(string name, bool display)
         {
-            AddToList(name);
-            ReformatInputList();
+            if (display) AddToList(name, true);
+            ReformatCurrNum();
+
+            op = Convert.ToChar(name);
+
+            double num = double.Parse(currentNum.ElementAt(0));
+            switch (name)
+            {
+                case "+":
+                    calc.Add(num);
+                    break;
+                case "-":
+                    calc.Sub(num);
+                    break;
+                case "×":
+                    calc.Mul(num);
+                    break;
+                case "÷":
+                    calc.Div(num);
+                    break;
+            }
+            currentNum = new List<string>();
+
             DisplayRes();
         }
 
 #region Digit Buttons
-        private void btn1_Click(object sender, RoutedEventArgs e) => AddToList("1");
-        private void btn2_Click(object sender, RoutedEventArgs e) => AddToList("2");
-        private void btn3_Click(object sender, RoutedEventArgs e) => AddToList("3");
-        private void btn4_Click(object sender, RoutedEventArgs e) => AddToList("4");
-        private void btn5_Click(object sender, RoutedEventArgs e) => AddToList("5");
-        private void btn6_Click(object sender, RoutedEventArgs e) => AddToList("6");
-        private void btn7_Click(object sender, RoutedEventArgs e) => AddToList("7");
-        private void btn8_Click(object sender, RoutedEventArgs e) => AddToList("8");
-        private void btn9_Click(object sender, RoutedEventArgs e) => AddToList("9");
-        private void btn0_Click(object sender, RoutedEventArgs e) => AddToList("0");
-        private void btn00_Click(object sender, RoutedEventArgs e) => AddToList("00");
-        private void btnDot_Click(object sender, RoutedEventArgs e) => AddToList(".");
+        private void btn1_Click(object sender, RoutedEventArgs e) => AddToList("1", false);
+        private void btn2_Click(object sender, RoutedEventArgs e) => AddToList("2", false);
+        private void btn3_Click(object sender, RoutedEventArgs e) => AddToList("3", false);
+        private void btn4_Click(object sender, RoutedEventArgs e) => AddToList("4", false);
+        private void btn5_Click(object sender, RoutedEventArgs e) => AddToList("5", false);
+        private void btn6_Click(object sender, RoutedEventArgs e) => AddToList("6", false);
+        private void btn7_Click(object sender, RoutedEventArgs e) => AddToList("7", false);
+        private void btn8_Click(object sender, RoutedEventArgs e) => AddToList("8", false);
+        private void btn9_Click(object sender, RoutedEventArgs e) => AddToList("9", false);
+        private void btn0_Click(object sender, RoutedEventArgs e) => AddToList("0", false);
+        private void btn00_Click(object sender, RoutedEventArgs e) => AddToList("00", false);
+        private void btnDot_Click(object sender, RoutedEventArgs e) => AddToList(".", false);
 
 #endregion
 
 #region Operations
-        private void btnPlus_Click(object sender, RoutedEventArgs e) => ButtonExec("+");
-        private void btnMinus_Click(object sender, RoutedEventArgs e) => ButtonExec("-");
-        private void btnMultiply_Click(object sender, RoutedEventArgs e) => ButtonExec("×");
-        private void btnDide_Click(object sender, RoutedEventArgs e) => ButtonExec("÷");
+        private void btnPlus_Click(object sender, RoutedEventArgs e) => ButtonExec("+", true);
+        private void btnMinus_Click(object sender, RoutedEventArgs e) => ButtonExec("-", true);
+        private void btnMultiply_Click(object sender, RoutedEventArgs e) => ButtonExec("×", true);
+        private void btnDide_Click(object sender, RoutedEventArgs e) => ButtonExec("÷", true);
 
         private void btnEqual_Click(object sender, RoutedEventArgs e)
         {
+            ButtonExec(Convert.ToString(op), false);
             ReformatInputList();
             DisplayRes();
             txtInput.Foreground = Brushes.LightGray;
             input = new List<string>();
+            currentNum = new List<string>();
+
+            calc = new Calculator_Client();
         }
 
 
@@ -59,6 +90,8 @@ namespace laba2
             txtInput.Text = "";
             input = new List<string>();
             txtOutput.Text = "";
+            currentNum = new List<string>();
+            op = new char();
         }
 #endregion
 
