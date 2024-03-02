@@ -17,19 +17,22 @@ namespace l1t3
                 (num) => 1f / Factorial(num), 
                 (num) => 1f / UnevenPow(num)
             };
-            double accuracy = .0000000001;
+            double accuracy = .0001;
 
-            double series1 = CalculateSeries(series[0], accuracy);
-            double series2 = CalculateSeries(series[1], accuracy);
-            double series3 = CalculateSeries(series[2], accuracy);
+            double res_Series1 = CalculateSeries(series[0], accuracy);
+            double res_Series2 = CalculateSeries(series[1], accuracy);
+            double res_Series3 = CalculateSeries(series[2], accuracy);
 
             Console.WriteLine($"Accuracy: {Output(accuracy)}\n");
+
             Console.WriteLine($"Series 1:  1/2^0 + 1/2^1 + 1/2^2 + ... + 1/2^n" +
-                $"\nres:\t  {Output(series1)}\n");
+                $"\nres:\t  {Output(res_Series1)}\n");
+
             Console.WriteLine($"Series 2:  1/1! + 1/2! + 1/3! + ... + 1/n!" +
-                $"\nres:\t  {Output(series2)}\n");
+                $"\nres:\t  {Output(res_Series2)}\n");
+
             Console.WriteLine($"Series 3: -1/2^0 + 1/2^1 - 1/2^2 + ... ± 1/2^n" +
-                $"\nres:\t  {Output(series3)}\n");
+                $"\nres:\t  {Output(res_Series3)}\n");
 
             Console.ReadKey();
         }
@@ -54,11 +57,10 @@ namespace l1t3
             for (int i = 2; i <= num; i++) res *= i;
             return res;
         }
-        static double UnevenPow(double num)
-        {
-            return Math.Pow(2, num) * (num % 2 == 0? -1f : 1f);
-        }
+        static double UnevenPow(double num) => 
+            Math.Pow(2, num) * (num % 2 == 0 ? -1f : 1f);
 
-        static string Output(double num) => $"{(num > 0 ? " " : "")}{num:0.##########}";
+        static string Output(double num) => 
+            $"{(num > 0 ? " " : "")}{num:0.##########}";
     }
 }

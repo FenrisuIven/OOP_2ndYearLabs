@@ -19,9 +19,7 @@ namespace l1t2
             Array.Resize(ref res, count);
             return res;
         }
-        public static int[] Execute_Linq(int[] arr, int k, Func<int, bool> func)
-        {
-            return arr.Where(elem => func(elem)).ToArray();
-        }
+        public static int[] Execute_Linq(int[] arr, int k, Func<int, bool> func) => 
+            arr.Where(elem => func(elem)).ToArray();
     }
 }

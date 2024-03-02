@@ -13,57 +13,71 @@ namespace l1t6
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Bubble sort");
             CompareSortMethods(Ethalon_BubbleSort, StudentMethods.Student_BubbleSort);
 
-            CompareSortMethods(Ethalon_QuickSort, StudentMethods.Student_QuickSort);
+            Console.WriteLine("Quick sort");
+            CompareSortMethods(Ethalon_QuickSort, StudentMethods.Student_BubbleSort);
 
             Console.ReadKey();
         }
 
         public static void CompareSortMethods(Func<int[], int[]> ethalon, Func<int[], int[]> student)
         {
-            string[] fileList = Directory.GetFiles("arraysForTest", "*.txt");
             double ethalonTime = 1, studentTime;
 
-            for (int i = 0; i < fileList.Count(); i++)
+            int[] arr = GenerateArr(30000);
+
+            int[] copyForEthalon = new int[arr.Length],
+                  copyForStudent = new int[arr.Length];
+
+            Array.Copy(arr, copyForEthalon, arr.Length);
+            Array.Copy(arr, copyForStudent, arr.Length);
+
+            try
             {
-                int[] arr = Array.ConvertAll(File.ReadAllText(fileList[i]).Split(), int.Parse);
+                Stopwatch st = Stopwatch.StartNew();
+                ethalon(copyForEthalon);
+                st.Stop();
+                ethalonTime = st.Elapsed.TotalMilliseconds;
+                Console.WriteLine($"Ethalon sort finished working. Ellapsed time: {TimeSpan.FromMilliseconds(ethalonTime)}");
+            }
+            catch (Exception ex) { Console.WriteLine("Exception in Ethalon sort: " + ex.Message); }
 
-                int[] copyForEthalon = new int[arr.Length], copyForStudent = new int[arr.Length];
+            var cancelToken = new CancellationTokenSource(TimeSpan.FromMilliseconds(1000000));
+            try
+            {
+                Stopwatch st = Stopwatch.StartNew();
+                var studRes = Task.Run(() => student(copyForStudent), cancelToken.Token);
+                studRes.Wait(cancelToken.Token);
+                st.Stop();
+                studentTime = st.Elapsed.TotalMilliseconds;
 
-                Array.Copy(arr, copyForEthalon, arr.Length);
-                Array.Copy(arr, copyForStudent, arr.Length);
-
-                try
+                if (CheckIfSorted(copyForEthalon, studRes.Result))
+                    Console.WriteLine($"Student sort gave right answer. Ellapsed time: " +
+                        $"{TimeSpan.FromMilliseconds(studentTime)}");
+                else
                 {
-                    Stopwatch st = new Stopwatch();
-                    st.Start();
-                    ethalon(copyForEthalon);
-                    st.Stop();
-                    ethalonTime = st.Elapsed.Milliseconds;
-                }
-                catch (Exception ex) { Console.WriteLine("Exception in Ethalon sort: " + ex.Message); }
-
-                try
-                {
-                    var cancellToken = new CancellationTokenSource(TimeSpan.FromSeconds(ethalonTime * 3f + 1000f));
-                    Stopwatch st = new Stopwatch();
-
-                    st.Start();
-                    var studRes = Task.Run(() => student, cancellToken.Token);
-                    studRes.Wait(cancellToken.Token);
-
-                    st.Stop();
-                    studentTime = st.Elapsed.Milliseconds;
-
-                    //помилку видає тут, хз шо не то, а розбиратися в цьому поки лінь
-                    //if (CheckIfSorted(studRes.Result)) { }
-                }
-                catch(Exception ex)
-                {
-
+                    Console.WriteLine($" - X Student sort gave wrong answer. Ellapsed time: " +
+                        $"{TimeSpan.FromMilliseconds(studentTime)}\n");
+                    return;
                 }
             }
+            catch (OperationCanceledException)
+            {
+                Console.WriteLine($" - ! Student sort took longer than {TimeSpan.FromMilliseconds(ethalonTime * 3 + 50)} ms\n");
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($" - ! Exception in Student sort: {ex.Message}\n");
+                return;
+            }
+
+            if (ethalonTime / 3 - 50 <= studentTime && studentTime <= ethalonTime * 3 + 50)
+                Console.WriteLine("+ Execution times are similar enough\n");
+
+            else Console.WriteLine("- Execution times vary too much\n");
         }
 
         #region Ethalon Sorts
@@ -111,12 +125,23 @@ namespace l1t6
         }
         #endregion
 
-        public static bool CheckIfSorted(int[] arr)
+        public static bool CheckIfSorted(int[] ethalonArr, int[] studArr)
         {
-            int[] copy = new int[arr.Length];
-            Array.Sort(copy);
-            for (int i = 0; i < arr.Length; i++) { if (arr[i] != copy[i]) return false; }
+            for (int i = 0; i < ethalonArr.Length; i++) 
+            { 
+                if (ethalonArr[i] != studArr[i]) 
+                    return false; 
+            }
             return true;
+        }
+
+        public static int[] GenerateArr(int amountOfElems)
+        {
+            int[] res = new int[amountOfElems];
+            Random rnd = new Random();
+            for(int i = 0; i < amountOfElems; i++)
+                res[i] = rnd.Next(0, 100000);
+            return res;
         }
     }
 }

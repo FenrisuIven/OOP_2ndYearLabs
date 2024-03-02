@@ -8,7 +8,6 @@ namespace l1t4
 {
     internal class Program
     {
-        public delegate double del(double num);
         static void Main(string[] args)
         {
             #region Startup_Message
@@ -20,28 +19,31 @@ namespace l1t4
                 "\n\t1 -- x^3 (інакше кажучи, x*x*x)" +
                 "\n\t2 -- x + 3,5" +
                 "\n(згідно цифри на початку) і виводитиме результат." +
-                "\n\nЯкщо вхідний рядок не задовольнятиме цей формат, програма завершить роботу.\n")
+                "\n\nЯкщо вхідний рядок не задовольнятиме цей формат, програма завершить роботу.\n");
             #endregion
 
-            del[] operations = {   
+            Func<double, double>[] operations = {
                 (num) => Math.Sqrt(Math.Abs(num)),
                 (num) => Math.Pow(num, 3),
-                (num) => num + 3.5 
+                (num) => num + 3.5,
             };
 
             while (true) {
                 try 
                 {
+                    Console.Write("- ");
                     string[] input = Console.ReadLine().Split();
-                    short indexOfOperation = short.Parse(input[0]);
-                    float num = float.Parse(input[1]);
+                    int idx = int.Parse(input[0]);
+                    double num = double.Parse(input[1]);
 
-                    del res = operations[indexOfOperation];
-                    Console.WriteLine("Результат виконання: {0}", res(num));
+                    double res = operations[idx](num);
+                    Console.WriteLine("Результат виконання: {0}", res);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Сталася помилка: {0}\nНатисність будь-яку клавішу для остаточного виходу з програми", ex.Message);
+                    Console.WriteLine("Сталася помилка: {0}\n" +
+                        "Натисність будь-яку клавішу для остаточного виходу з програми.", 
+                        ex.Message);
                     break;
                 }
             }

@@ -15,7 +15,7 @@ namespace l1t5
             operations = [
                 () => Opacity = Opacity == 1 ? .5 : 1,
                 () => BackColor = BackColor == CustomBackColor ? SwitchBackColor : CustomBackColor,
-                () => MessageBox.Show("world", "hello")
+                () => MessageBox.Show("world", "Hello")
             ];
 
             InitializeComponent();

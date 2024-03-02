@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace l1t1
 {
-    public delegate void Del(Action action, int delay, ConsoleKey stopKey);
-
     public class Program
     {
         static void Main(string[] args)
         {
-            Action message = delegate () { Console.WriteLine(DateTime.Now.ToString("HH:mm:ss")); };
+            MyTimer_MultiThread timer = new MyTimer_MultiThread();
+            timer.Start(() => Output(ConsoleColor.Red, 1), 1);
+            timer.Start(() => Output(ConsoleColor.Green, 2), 5);
 
-            Del del = MyTimer_SingleThread.Start;
-            del(message, 1, ConsoleKey.A);
-            
-            del = MyTimer_MultiThread.Start;
-            del(Output, 1, ConsoleKey.B);
-            del(Output, 2, ConsoleKey.B);
-            del(Output, 3, ConsoleKey.B);
+            Action output = () => Console.WriteLine("Hello");
+            timer.Start(output, 10);
         }
-        public static void Output() => Console.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
+        public static void Output(ConsoleColor color, int idx) 
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine($"{idx}: " + DateTime.Now.ToString("HH:mm:ss"));
+            Console.ResetColor();
+        }
     }
 }

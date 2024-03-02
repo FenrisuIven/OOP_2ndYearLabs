@@ -10,33 +10,18 @@ namespace l1t1
 {
     public class MyTimer_MultiThread
     {
-        private static bool running = true;
-
-        public static void Start(Action action, int s, ConsoleKey stopKey)
+        public void Start(Action action, int s)
         {
-            Console.WriteLine("Multi thread timer was started. Interval: {0}s, Exit key: {1}", s, stopKey);
+            Console.WriteLine("Multi thread timer was started. Interval: {0}s", s);
 
             Thread thread = new Thread(() => { 
-                while (running)
+                while (true)
                 {
                     action();
                     Thread.Sleep(s * 1000);
-
-                    if (Console.KeyAvailable)
-                    {
-                        var key = Console.ReadKey(true);
-                        if (key.Key == stopKey) Stop();
-                    }
                 } 
             });
             thread.Start();
-        }
-
-        static void Stop()
-        {
-            running = false;
-            Console.WriteLine("Multi thread timer was stopped");
-            Console.ReadKey();
         }
     }
 }
