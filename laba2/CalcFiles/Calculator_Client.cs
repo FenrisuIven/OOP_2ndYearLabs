@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -30,6 +31,34 @@ namespace laba2
         public double Sub(double operand) => Run(new Sub(arithUnit, operand));
         public double Mul(double operand) => Run(new Mul(arithUnit, operand));
         public double Div(double operand) => Run(new Div(arithUnit, operand));
+        public double Root(double operand) => Run(new Root(arithUnit, operand));
+        public double Pow(double operand) => Run(new Add(arithUnit, operand));
+
+        public void Exec(string op, double num)
+        {
+            switch (op)
+            {
+                case "+":
+                    Add(num);
+                    break;
+
+                case "-":
+                    Sub(num);
+                    break;
+
+                case "*":
+                    Mul(num);
+                    break;
+
+                case "/":
+                    Div(num);
+                    break;
+
+                case "√":
+                    Root(num);
+                    break;
+            }
+        }
 
         public double Undo(int levels)
         {

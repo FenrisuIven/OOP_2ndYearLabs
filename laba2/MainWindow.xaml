@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:laba2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="250"
-        WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Disabled" MaxHeight="450" MaxWidth="250" MinHeight="450" MinWidth="250">
+        MaxHeight="450" MaxWidth="250" MinHeight="450" MinWidth="250"
+        WindowStartupLocation="CenterScreen" 
+        ScrollViewer.VerticalScrollBarVisibility="Disabled">
     <Grid Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
@@ -24,15 +26,15 @@
         </Grid.ColumnDefinitions>
         
         <TextBox Name="txtInput" Grid.Row="0" Grid.ColumnSpan="4" 
-                 TextAlignment="Right" Text="0" FontSize="20" IsReadOnly="True" Margin="10,10,10,40" HorizontalContentAlignment="Right"/>
+                 TextAlignment="Right" Text="" FontSize="20" IsReadOnly="True" Margin="10,10,10,40" HorizontalContentAlignment="Right"/>
         <TextBox Name="txtOutput" Grid.Row="0" Grid.ColumnSpan="4" 
-                 TextAlignment="Right" Text="0" FontSize="20" IsReadOnly="True" Margin="10,110,10,10" HorizontalContentAlignment="Right"/>
+                 TextAlignment="Right" Text="" FontSize="20" IsReadOnly="True" Margin="10,110,10,10" HorizontalContentAlignment="Right"/>
 
         <Button Name="btnCE"    Content="CE" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Width="50" Height="45"/>
         <Button Name="btnC"     Content="C"  HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="50" Height="45" Click="btnC_Click"/>
 
         <Button Name="btnBack"      Content="←" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Width="50" Height="45"/>
-        <Button Name="btnDivide"    Content="÷" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnDide_Click"/>
+        <Button Name="btnDivide"    Content="÷" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnDivide_Click"/>
         <Button Name="btnMultiply"  Content="×" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnMultiply_Click"/>
         <Button Name="btnMinus"     Content="-" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Width="50" Height="45" Click="btnMinus_Click"/>
 

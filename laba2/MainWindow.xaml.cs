@@ -46,17 +46,16 @@ namespace laba2
             currentNum = new List<string> { temp };
         }
 
+
         private bool sidePannelActive = false;
         private void AddPannel_Click(object sender, RoutedEventArgs e)
         {
             ChangeAppearence();
             sidePannelActive = !sidePannelActive;
-            Debug.WriteLine($"sidePanelActive: {sidePannelActive}");
         }
 
         public void ChangeAppearence()
         {
-            Debug.WriteLine($"sidePanelActive: {sidePannelActive}");
             if (!sidePannelActive)
             {
                 window.MaxWidth = 308;
@@ -86,19 +85,6 @@ namespace laba2
                 btnExp.Visibility = Visibility.Collapsed;
                 btnLn.Visibility = Visibility.Collapsed;
             }
-        }
-        public Button GenerateButton(string name, string content, int row, int col)
-        {
-            Button temp = new Button();
-            temp.Width = btn1.Width;
-            temp.Height = btn1.Height;
-            temp.Content = content;
-            Grid.SetRow(temp, row);
-            Grid.SetColumn(temp, col);
-            temp.Name = name;
-
-            grid.Children.Add(temp);
-            return temp;
         }
     }
 }

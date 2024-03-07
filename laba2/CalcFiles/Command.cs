@@ -22,8 +22,8 @@ namespace laba2
             this.unit = unit;
             this.operand = operand;
         }
-        public override void Execute() => unit.Run('+', operand);
-        public override void UnExecute() => unit.Run('-', operand);
+        public override void Execute() => unit.Run("+", operand);
+        public override void UnExecute() => unit.Run("-", operand);
     }
 
     class Sub : Command
@@ -33,8 +33,8 @@ namespace laba2
             this.unit = unit;
             this.operand = operand;
         }
-        public override void Execute() => unit.Run('-', operand);
-        public override void UnExecute() => unit.Run('+', operand);
+        public override void Execute() => unit.Run("-", operand);
+        public override void UnExecute() => unit.Run("+", operand);
     }
 
     class Mul : Command
@@ -44,8 +44,8 @@ namespace laba2
             this.unit = unit;
             this.operand = operand;
         }
-        public override void Execute() => unit.Run('*', operand);
-        public override void UnExecute() => unit.Run('/', operand);
+        public override void Execute() => unit.Run("*", operand);
+        public override void UnExecute() => unit.Run("/", operand);
     }
 
     class Div : Command
@@ -55,7 +55,18 @@ namespace laba2
             this.unit = unit;
             this.operand = operand;
         }
-        public override void Execute() => unit.Run('/', operand);
-        public override void UnExecute() => unit.Run('*', operand);
+        public override void Execute() => unit.Run("/", operand);
+        public override void UnExecute() => unit.Run("*", operand);
+    }
+
+    class Root : Command
+    {
+        public Root(ArithmeticUnit_Receiver unit, double operand)
+        {
+            this.unit = unit;
+            this.operand = operand;
+        }
+        public override void Execute() => unit.Run("√", operand);
+        public override void UnExecute() => unit.Run("undo √", operand);
     }
 }

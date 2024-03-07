@@ -10,24 +10,34 @@ namespace laba2
     {
         public double Register { get; private set; }
 
-        public void Run(char opCode, double operand)
+        public void Run(string opCode, double operand)
         {
             switch (opCode)
             {
-                case '+':
+                case "+":
                     Register += operand;
                     break;
 
-                case '-':
+                case "-":
                     Register -= operand;
                     break;
 
-                case '*':
+                case "*":
                     Register *= operand;
                     break;
                 
-                case '/':
+                case "/":
+                    if (operand == 0) throw new DivideByZeroException();
                     Register /= operand;
+                    break;
+
+                case "√":
+                    if (operand < 0) throw new ArgumentOutOfRangeException();
+                    Register = Math.Sqrt(operand);
+                    break;
+
+                case "undo √":
+                    Register = Math.Pow(Register, 2);
                     break;
             }
         }
