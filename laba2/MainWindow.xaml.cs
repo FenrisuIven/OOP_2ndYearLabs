@@ -21,9 +21,7 @@ namespace laba2
         private List<string> input = new List<string>();
         private Calculator_Client calc = new Calculator_Client();
 
-       
-
-        public MainWindow() { InitializeComponent(); }
+        public MainWindow() { InitializeComponent(); InitializeButtons(); }
 
         private void DisplayInput() 
         {
@@ -64,22 +62,22 @@ namespace laba2
                 ColumnDefinition sideCol = new ColumnDefinition();
                 grid.ColumnDefinitions.Add(sideCol);
 
-                btnRoot.Visibility = Visibility.Visible;
-                btnPow.Visibility = Visibility.Visible;
-                btnPi.Visibility = Visibility.Visible;
-                btnExp.Visibility = Visibility.Visible;
-                btnLn.Visibility = Visibility.Visible;
+                operation_Root.Visibility = Visibility.Visible;
+                operation_Pow.Visibility = Visibility.Visible;
+                digit_Pi.Visibility = Visibility.Visible;
+                digit_Exp.Visibility = Visibility.Visible;
+                operation_Ln.Visibility = Visibility.Visible;
             }
             else
             {
                 AddPannel.Content = "≡";
                 grid.ColumnDefinitions.RemoveAt(grid.ColumnDefinitions.Count - 1);
 
-                btnRoot.Visibility = Visibility.Collapsed;
-                btnPow.Visibility = Visibility.Collapsed;
-                btnPi.Visibility = Visibility.Collapsed;
-                btnExp.Visibility = Visibility.Collapsed;
-                btnLn.Visibility = Visibility.Collapsed;
+                operation_Root.Visibility = Visibility.Collapsed;
+                operation_Pow.Visibility = Visibility.Collapsed;
+                digit_Pi.Visibility = Visibility.Collapsed;
+                digit_Exp.Visibility = Visibility.Collapsed;
+                operation_Ln.Visibility = Visibility.Collapsed;
             }
         }
 

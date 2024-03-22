@@ -41,36 +41,36 @@
                  Margin="10,110,10,10" 
                  HorizontalContentAlignment="Right"/>
 
-        <Button Name="btnCE"        Content="CE"    Click="btnC_Click"          Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
-        <Button Name="btnC"         Content="C"     Click="btnC_Click"          Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
-        <Button Name="btnEqual"     Content="="     Click="btnEqual_Click"      Grid.Row="5" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btnBack"      Content="←"     Click="btnBack_Click"       Grid.Row="1" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
+        <Button Name="btnCE"        Content="CE"    Click="btnC_Click"          Grid.Row="1" Grid.Column="0"/>
+        <Button Name="btnC"         Content="C"     Click="btnC_Click"          Grid.Row="1" Grid.Column="1"/>
+        <Button Name="btnEqual"     Content="="     Click="btnEqual_Click"      Grid.Row="5" Grid.Column="3" />
+        <Button Name="btnBack"      Content="←"     Click="btnBack_Click"       Grid.Row="1" Grid.Column="2"/>
 
-        <Button Name="btnDivide"    Content="÷"     Click="operationBtn_Click"  Grid.Row="1" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
-        <Button Name="btnMultiply"  Content="×"     Click="operationBtn_Click"  Grid.Row="2" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
-        <Button Name="btnMinus"     Content="-"     Click="operationBtn_Click"  Grid.Row="3" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
-        <Button Name="btnPlus"      Content="+"     Click="operationBtn_Click"  Grid.Row="4" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
-        <Button Name="btnDot"       Content="."     Click="operationBtn_Click"  Grid.Row="5" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
+        <Button Name="operation_Divide"    Content="÷"   Grid.Row="1" Grid.Column="3"/>
+        <Button Name="operation_Multiply"  Content="×"   Grid.Row="2" Grid.Column="3"/>
+        <Button Name="operation_Minus"     Content="-"   Grid.Row="3" Grid.Column="3"/>
+        <Button Name="operation_Plus"      Content="+"   Grid.Row="4" Grid.Column="3"/>
 
-        <Button Name="btnRoot"      Content="√"     Click="operationBtn_Click"  Grid.Row="1" Grid.Column="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" Visibility="Collapsed"/>
-        <Button Name="btnPow"       Content="xⁿ"    Click="operationBtn_Click"  Grid.Row="2" Grid.Column="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" Visibility="Collapsed"/>
-        <Button Name="btnLn"        Content="ln"    Click="operationBtn_Click"  Grid.Row="5" Grid.Column="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" Visibility="Collapsed"/>
+        <Button Name="operation_Root"      Content="√"   Grid.Row="1" Grid.Column="5" Visibility="Collapsed"/>
+        <Button Name="operation_Pow"       Content="xⁿ"  Grid.Row="2" Grid.Column="5" Visibility="Collapsed"/>
+        <Button Name="operation_Ln"        Content="ln"  Grid.Row="5" Grid.Column="5" Visibility="Collapsed"/>
 
-        
-        <Button Name="btn1"         Content="1"     Click="digitBtn_Click"      Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btn2"         Content="2"     Click="digitBtn_Click"      Grid.Row="4" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btn3"         Content="3"     Click="digitBtn_Click"      Grid.Row="4" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btn4"         Content="4"     Click="digitBtn_Click"      Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btn7"         Content="7"     Click="digitBtn_Click"      Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btn5"         Content="5"     Click="digitBtn_Click"      Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btn6"         Content="6"     Click="digitBtn_Click"      Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btn8"         Content="8"     Click="digitBtn_Click"      Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btn9"         Content="9"     Click="digitBtn_Click"      Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btn00"        Content="00"    Click="digitBtn_Click"      Grid.Row="5" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-        <Button Name="btn0"         Content="0"     Click="digitBtn_Click"      Grid.Row="5" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
+    
+        <Button Name="digit_1"      Grid.Row="4"    Grid.Column="0"/>
+        <Button Name="digit_2"      Grid.Row="4"    Grid.Column="1"/>
+        <Button Name="digit_3"      Grid.Row="4"    Grid.Column="2"/>
+        <Button Name="digit_4"      Grid.Row="3"    Grid.Column="0"/>
+        <Button Name="digit_7"      Grid.Row="2"    Grid.Column="0"/>
+        <Button Name="digit_5"      Grid.Row="3"    Grid.Column="1"/>
+        <Button Name="digit_6"      Grid.Row="3"    Grid.Column="2"/>
+        <Button Name="digit_8"      Grid.Row="2"    Grid.Column="1"/>
+        <Button Name="digit_9"      Grid.Row="2"    Grid.Column="2"/>
+        <Button Name="digit_00"     Grid.Row="5"    Grid.Column="0"/>
+        <Button Name="digit_0"      Grid.Row="5"    Grid.Column="1"/>
+        <Button Name="digit_Dot"    Grid.Row="5"    Grid.Column="2"/>
 
-        <Button Name="btnPi"        Content="π"     Click="digitBtn_Click"      Grid.Row="3" Grid.Column="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" Visibility="Collapsed"/>
-        <Button Name="btnExp"       Content="e"     Click="digitBtn_Click"      Grid.Row="4" Grid.Column="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" Visibility="Collapsed"/>
+        <Button Name="digit_Pi"     Grid.Row="3" Grid.Column="5"/>
+        <Button Name="digit_Exp"    Grid.Row="4" Grid.Column="5"/>
 
         <Button Name="AddPannel"    Content="≡"     HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Height="25" Margin="11,11,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="AddPannel_Click"/>
 
