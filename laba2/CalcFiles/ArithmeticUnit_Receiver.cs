@@ -10,7 +10,7 @@ namespace laba2
     {
         public double Register { get; private set; }
 
-        public void Run(string opCode, double operand)
+        public void Run(string opCode, double operand, double num = 1)
         {
             switch (opCode)
             {
@@ -22,11 +22,11 @@ namespace laba2
                     Register -= operand;
                     break;
 
-                case "*":
+                case "×":
                     Register *= operand;
                     break;
                 
-                case "/":
+                case "÷":
                     if (operand == 0) throw new DivideByZeroException();
                     Register /= operand;
                     break;
@@ -36,8 +36,12 @@ namespace laba2
                     Register = Math.Sqrt(operand);
                     break;
 
-                case "undo √":
+                case "x²":
                     Register = Math.Pow(Register, 2);
+                    break;
+
+                case "xⁿ":
+                    Register = Math.Pow(Register, num);
                     break;
             }
         }

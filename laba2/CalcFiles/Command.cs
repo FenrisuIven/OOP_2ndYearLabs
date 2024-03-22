@@ -67,6 +67,18 @@ namespace laba2
             this.operand = operand;
         }
         public override void Execute() => unit.Run("√", operand);
-        public override void UnExecute() => unit.Run("undo √", operand);
+        public override void UnExecute() => unit.Run("x²", operand);
+    }
+    class Pow : Command
+    {
+        private double _num;
+        public Pow(ArithmeticUnit_Receiver unit, double operand, double num)
+        {
+            this.unit = unit;
+            this.operand = operand;
+            _num = num;
+        }
+        public override void Execute() => unit.Run("xⁿ", operand, _num);
+        public override void UnExecute() => unit.Run("undo xⁿ", operand, _num);
     }
 }

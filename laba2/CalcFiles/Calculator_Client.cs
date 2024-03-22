@@ -32,30 +32,33 @@ namespace laba2
         public double Mul(double operand) => Run(new Mul(arithUnit, operand));
         public double Div(double operand) => Run(new Div(arithUnit, operand));
         public double Root(double operand) => Run(new Root(arithUnit, operand));
-        public double Pow(double operand) => Run(new Add(arithUnit, operand));
+        public double Pow(double operand, double num) => Run(new Pow(arithUnit, operand, num));
 
-        public void Exec(string op, double num)
+        public void Exec(string op, double operand, double num = 1)
         {
             switch (op)
             {
                 case "+":
-                    Add(num);
+                    Add(operand);
                     break;
 
                 case "-":
-                    Sub(num);
+                    Sub(operand);
                     break;
 
-                case "*":
-                    Mul(num);
+                case "×":
+                    Mul(operand);
                     break;
 
-                case "/":
-                    Div(num);
+                case "÷":
+                    Div(operand);
                     break;
 
                 case "√":
-                    Root(num);
+                    Root(operand);
+                    break;
+                case "xⁿ":
+                    Pow(operand, num);
                     break;
             }
         }
