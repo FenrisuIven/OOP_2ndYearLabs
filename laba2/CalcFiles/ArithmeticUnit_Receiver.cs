@@ -43,6 +43,10 @@ namespace laba2
                 case "xⁿ":
                     Register = Math.Pow(Register, num);
                     break;
+
+                case "ln":
+                    Register = Math.Log(Register, num);
+                    break;
             }
         }
     }

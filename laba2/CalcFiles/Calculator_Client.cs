@@ -33,6 +33,7 @@ namespace laba2
         public double Div(double operand) => Run(new Div(arithUnit, operand));
         public double Root(double operand) => Run(new Root(arithUnit, operand));
         public double Pow(double operand, double num) => Run(new Pow(arithUnit, operand, num));
+        public double Log(double operand, double num) => Run(new Log(arithUnit, operand, num));
 
         public void Exec(string op, double operand, double num = 1)
         {
@@ -57,8 +58,13 @@ namespace laba2
                 case "√":
                     Root(operand);
                     break;
+
                 case "xⁿ":
                     Pow(operand, num);
+                    break;
+
+                case "ln":
+                    Log(operand, num);
                     break;
             }
         }

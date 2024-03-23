@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace laba2
 {
@@ -18,18 +19,16 @@ namespace laba2
                 if (obj is Button button)
                 {
                     string[] buttonNameSplit = ((string)button.Name).Split('_');
-                    AddButtonChars(button);
+                    if (buttonNameSplit[0] != "skip") AddButtonChars(button);
 
                     if (buttonNameSplit[0] == "digit")
                     {
                         button.Click += digitBtn_Click;
-                        button.Content = buttonNameSplit[1] == "Dot" ? "." : buttonNameSplit[1];
+                        if (button.Content == null) button.Content = buttonNameSplit[1] == "Dot" ? "." : buttonNameSplit[1];
                     }
 
-                    else if (buttonNameSplit[0] == "operation")
-                    {   
+                    else if (buttonNameSplit[0] == "operation") 
                         button.Click += operationBtn_Click;
-                    }
 
                 }
             }
@@ -40,7 +39,9 @@ namespace laba2
         {
             button.VerticalAlignment = VerticalAlignment.Stretch;
             button.HorizontalAlignment = HorizontalAlignment.Stretch;
-            button.Margin = new Thickness(5, 5, 5, 5);
+            button.Margin = new Thickness(2, 2, 2, 2);
+            button.Background = Brushes.White;
+            button.BorderBrush = null;
         }
     }
 }

@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="250"
         WindowStartupLocation="CenterScreen" 
-        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFE6E6E6">
+
     <Grid Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
@@ -23,56 +24,68 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+            
         <TextBox Name="txtInput" 
                  Grid.Row="0" 
                  Grid.ColumnSpan="5" 
                  TextAlignment="Right" 
                  Text="" FontSize="20" 
                  IsReadOnly="True" 
-                 Margin="10,10,10,40" 
-                 HorizontalContentAlignment="Right"/>
+                 Margin="5,10,5,40" 
+                 HorizontalContentAlignment="Right" 
+                 BorderBrush="{x:Null}"/>
         <TextBox Name="txtOutput" 
                  Grid.Row="0" 
                  Grid.ColumnSpan="5" 
                  TextAlignment="Right" 
                  Text="" FontSize="20" 
                  IsReadOnly="True" 
-                 Margin="10,110,10,10" 
-                 HorizontalContentAlignment="Right"/>
+                 Margin="5,110,5,10" 
+                 HorizontalContentAlignment="Right" 
+                 BorderBrush="{x:Null}"/>
 
-        <Button Name="btnCE"        Content="CE"    Click="btnC_Click"          Grid.Row="1" Grid.Column="0"/>
-        <Button Name="btnC"         Content="C"     Click="btnC_Click"          Grid.Row="1" Grid.Column="1"/>
-        <Button Name="btnEqual"     Content="="     Click="btnEqual_Click"      Grid.Row="5" Grid.Column="3" />
-        <Button Name="btnBack"      Content="←"     Click="btnBack_Click"       Grid.Row="1" Grid.Column="2"/>
+        <Button  Name="skip_AddPannel"    
+                 Content="≡"      
+                 VerticalAlignment="Top" 
+                 HorizontalAlignment="Left"
+                 Width="25" Height="25" 
+                 Margin="6,11,0,0"
+                 Background="{x:Null}" 
+                 BorderBrush="{x:Null}" 
+                 Click="AddPannel_Click"
+                 Grid.Row="0" Grid.Column="0" 
+                 RenderTransformOrigin="0,0" />
 
-        <Button Name="operation_Divide"    Content="÷"   Grid.Row="1" Grid.Column="3"/>
-        <Button Name="operation_Multiply"  Content="×"   Grid.Row="2" Grid.Column="3"/>
-        <Button Name="operation_Minus"     Content="-"   Grid.Row="3" Grid.Column="3"/>
-        <Button Name="operation_Plus"      Content="+"   Grid.Row="4" Grid.Column="3"/>
+        <Button Name="btnCE"                Content="CE"    Click="btnCE_Click"         Grid.Row="1" Grid.Column="0"/>
+        <Button Name="btnC"                 Content="C"     Click="btnC_Click"          Grid.Row="1" Grid.Column="1"/>
+        <Button Name="btnEqual"             Content="="     Click="btnEqual_Click"      Grid.Row="5" Grid.Column="3"/>
+        <Button Name="btnBack"              Content="←"     Click="btnBack_Click"       Grid.Row="1" Grid.Column="2"/>
 
-        <Button Name="operation_Root"      Content="√"   Grid.Row="1" Grid.Column="5" Visibility="Collapsed"/>
-        <Button Name="operation_Pow"       Content="xⁿ"  Grid.Row="2" Grid.Column="5" Visibility="Collapsed"/>
-        <Button Name="operation_Ln"        Content="ln"  Grid.Row="5" Grid.Column="5" Visibility="Collapsed"/>
+        <Button Name="operation_Divide"     Content="÷"     Grid.Row="1" Grid.Column="3"/>
+        <Button Name="operation_Multiply"   Content="×"     Grid.Row="2" Grid.Column="3"/>
+        <Button Name="operation_Minus"      Content="-"     Grid.Row="3" Grid.Column="3"/>
+        <Button Name="operation_Plus"       Content="+"     Grid.Row="4" Grid.Column="3"/>
 
-    
-        <Button Name="digit_1"      Grid.Row="4"    Grid.Column="0"/>
-        <Button Name="digit_2"      Grid.Row="4"    Grid.Column="1"/>
-        <Button Name="digit_3"      Grid.Row="4"    Grid.Column="2"/>
-        <Button Name="digit_4"      Grid.Row="3"    Grid.Column="0"/>
-        <Button Name="digit_7"      Grid.Row="2"    Grid.Column="0"/>
-        <Button Name="digit_5"      Grid.Row="3"    Grid.Column="1"/>
-        <Button Name="digit_6"      Grid.Row="3"    Grid.Column="2"/>
-        <Button Name="digit_8"      Grid.Row="2"    Grid.Column="1"/>
-        <Button Name="digit_9"      Grid.Row="2"    Grid.Column="2"/>
-        <Button Name="digit_00"     Grid.Row="5"    Grid.Column="0"/>
-        <Button Name="digit_0"      Grid.Row="5"    Grid.Column="1"/>
-        <Button Name="digit_Dot"    Grid.Row="5"    Grid.Column="2"/>
+        <Button Name="operation_Root"       Content="√"     Grid.Row="1" Grid.Column="5" Visibility="Collapsed"/>
+        <Button Name="operation_Pow"        Content="xⁿ"    Grid.Row="2" Grid.Column="5" Visibility="Collapsed"/>
+        <Button Name="operation_Ln"         Content="ln"    Grid.Row="5" Grid.Column="5" Visibility="Collapsed"/>
 
-        <Button Name="digit_Pi"     Grid.Row="3" Grid.Column="5"/>
-        <Button Name="digit_Exp"    Grid.Row="4" Grid.Column="5"/>
 
-        <Button Name="AddPannel"    Content="≡"     HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Height="25" Margin="11,11,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="AddPannel_Click"/>
+        <Button Name="digit_1"              Grid.Row="4"    Grid.Column="0"/>
+        <Button Name="digit_2"              Grid.Row="4"    Grid.Column="1"/>
+        <Button Name="digit_3"              Grid.Row="4"    Grid.Column="2"/>
+        <Button Name="digit_4"              Grid.Row="3"    Grid.Column="0"/>
+        <Button Name="digit_7"              Grid.Row="2"    Grid.Column="0"/>
+        <Button Name="digit_5"              Grid.Row="3"    Grid.Column="1"/>
+        <Button Name="digit_6"              Grid.Row="3"    Grid.Column="2"/>
+        <Button Name="digit_8"              Grid.Row="2"    Grid.Column="1"/>
+        <Button Name="digit_9"              Grid.Row="2"    Grid.Column="2"/>
+        <Button Name="digit_00"             Grid.Row="5"    Grid.Column="0"/>
+        <Button Name="digit_0"              Grid.Row="5"    Grid.Column="1"/>
+        <Button Name="digit_Dot"            Grid.Row="5"    Grid.Column="2"/>
+
+        <Button Name="digit_Pi"             Content="π"     Grid.Row="3" Grid.Column="5" Visibility="Collapsed"/>
+        <Button Name="digit_Exp"            Content="e"     Grid.Row="4" Grid.Column="5" Visibility="Collapsed"/>
 
     </Grid>
 </Window>

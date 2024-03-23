@@ -21,7 +21,9 @@ namespace laba2
         private List<string> input = new List<string>();
         private Calculator_Client calc = new Calculator_Client();
 
-        public MainWindow() { InitializeComponent(); InitializeButtons(); }
+        public MainWindow() { InitializeComponent(); 
+            InitializeButtons(); 
+        }
 
         private void DisplayInput() 
         {
@@ -46,7 +48,7 @@ namespace laba2
             currentNum = new List<string> { temp };
         }
 
-
+        #region SidePannel
         private bool sidePannelActive = false;
         private void AddPannel_Click(object sender, RoutedEventArgs e)
         {
@@ -56,30 +58,32 @@ namespace laba2
 
         public void ChangeAppearence()
         {
+            List<Button> sidePannel = new() {
+                operation_Root, 
+                operation_Pow,
+                digit_Pi, 
+                digit_Exp, 
+                operation_Ln
+            };
+
             if (!sidePannelActive)
             {
-                AddPannel.Content = "<";
+                skip_AddPannel.Content = "<";
                 ColumnDefinition sideCol = new ColumnDefinition();
                 grid.ColumnDefinitions.Add(sideCol);
-
-                operation_Root.Visibility = Visibility.Visible;
-                operation_Pow.Visibility = Visibility.Visible;
-                digit_Pi.Visibility = Visibility.Visible;
-                digit_Exp.Visibility = Visibility.Visible;
-                operation_Ln.Visibility = Visibility.Visible;
             }
             else
             {
-                AddPannel.Content = "≡";
+                skip_AddPannel.Content = "≡";
                 grid.ColumnDefinitions.RemoveAt(grid.ColumnDefinitions.Count - 1);
+            }
 
-                operation_Root.Visibility = Visibility.Collapsed;
-                operation_Pow.Visibility = Visibility.Collapsed;
-                digit_Pi.Visibility = Visibility.Collapsed;
-                digit_Exp.Visibility = Visibility.Collapsed;
-                operation_Ln.Visibility = Visibility.Collapsed;
+            foreach (var button in sidePannel)
+            {
+                button.Visibility = button.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
             }
         }
+        #endregion
 
     }
 }
