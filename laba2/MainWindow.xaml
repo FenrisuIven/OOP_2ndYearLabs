@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:laba2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="250"
+        Title="MainWindow" 
+        Height="450" Width="250"
+        MinHeight="400" MinWidth="200"
+        MaxHeight="650" MaxWidth="450"
         WindowStartupLocation="CenterScreen" 
         ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFE6E6E6">
 

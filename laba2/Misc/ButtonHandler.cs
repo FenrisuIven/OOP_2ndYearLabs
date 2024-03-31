@@ -7,35 +7,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Controls;
+using System.CodeDom;
 
 namespace laba2
 {
     public partial class MainWindow
     {
-        private List<string> currentNum = new List<string>();
-        bool firstOp = true;
-        string lastOp = "";
-        bool isNegative = false;
-        bool blockInput = false;
-
-        private void AddToList(string val, bool op)
-        {
-            if (firstOp) txtOutput.Text = "";
-            if (currentNum.Count == 1 && currentNum.ElementAt(0) == "0")
-            {
-                if (val != ",") return;
-            }
-
-            input.Add(val);
-
-            if (!op) currentNum.Add(val);
-            else { 
-                ReformatInputList();
-                if (input.ElementAt(0).Length > 12) input.Add("\n");
-            }
-            DisplayInput();
-        }
-
         #region Digit Buttons
         private void digitBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -67,29 +44,44 @@ namespace laba2
         #endregion
 
         #region Operations
+        public bool skip = false;
         private void operationBtn_Click(object sender, RoutedEventArgs e)
         {
             string operation = (string)((Button)sender).Content;
-
             if (blockInput) return;
 
-            if (operation == "√") { RootLogic(); return; }
-            if (operation == "xⁿ") { PowLogic(sender); return; }
-            if (operation == "ln") { LnLogic(sender); return; }
+            switch (operation)
+            {
+                case "√":
+                    RootLogic();
+                    return;
+
+                case "xⁿ":
+                    PowLogic(sender); 
+                    return;
+
+                case "ln":
+                    LnLogic(sender); 
+                    return;
+            }
 
             AddToList(operation, true);
 
-            if (firstOp) { FirstOp(); firstOp = false; }
-            else
+            if (firstOp) 
             {
-                if (operation == "-" && currentNum.Count == 0 && firstOp)
-                {   
-                    AddToList("-", true);
+                if (operation == "-" && currentNum.ElementAt(0) == "" && input.Count == 1)
+                {
                     lastOp = "-";
                     isNegative = true;
                 }
+                else FirstOp();
+                firstOp = false;
+            }
+            else if (skip) skip = false;
+            else
+            {
                 ReformatCurrNum();
-                calc.Exec(operation, double.Parse(currentNum.ElementAt(0)));
+                calc.Exec(lastOp, double.Parse(currentNum.ElementAt(0)));
             }
 
             currentNum = new List<string>();
@@ -101,26 +93,37 @@ namespace laba2
         {
             bool skipRes = false;
             ReformatCurrNum();
-            try { calc.Root(double.Parse(currentNum.ElementAt(0)) * (isNegative ? -1 : 1)); }
-            catch(ArgumentOutOfRangeException) 
+
+            if (isNegative)
             {
-                skipRes = true; 
-                txtOutput.Text = "Invalid input"; 
+                skipRes = true;
+                txtOutput.Text = "Invalid input";
             }
+            else calc.Root(double.Parse(currentNum.ElementAt(0)));
+
             FinishExec(skipRes);
         }
         private void PowLogic(object sender)
-        {   
+        {
+            AddToList("^", true);
             blockInput = true;
             FirstOp();
-            AddToList("^", true);
             lastOp = (string)((Button)sender).Content;
         }
         private void LnLogic(object sender)
         {
+            if (firstOp && currentNum.Count == 0)
+            {
+                input.Add("ln(");
+                AddToList("ln", true);
+                input.Add(")_");
+            }
+            else input.Add(" ln_");
+
+            DisplayInput();
+
             blockInput = true;
             FirstOp();
-            AddToList("ln ", true);
             lastOp = (string)((Button)sender).Content;
         }
         #endregion
@@ -136,7 +139,7 @@ namespace laba2
                 calc.Exec(lastOp == "" ? "+" : lastOp, double.Parse(num), double.Parse(num)); 
             }
 
-            catch (DivideByZeroException) { skipRes = true; txtOutput.Text = "Cannot divide by zero."; }
+            catch (DivideByZeroException) { skipRes = true; txtOutput.Text = "Cannot divide by zero"; }
             FinishExec(skipRes);
         }
 
@@ -154,32 +157,29 @@ namespace laba2
             isNegative = false;
         }
 
-        private void btnCE_Click(object sender, RoutedEventArgs e) => calc.Undo(1); 
-        private void btnBack_Click(object sender, RoutedEventArgs e) => calc.Redo(1); 
-
-        private void FirstOp()
+        private void btnCE_Click(object sender, RoutedEventArgs e)
         {
             ReformatCurrNum();
             string num = currentNum.ElementAt(0);
-            calc.Add(double.Parse(num));
-            currentNum = new List<string>();
-        }
+            calc.Exec(lastOp == "" ? "+" : lastOp, double.Parse(num), double.Parse(num));
+            calc.Undo(1);
 
-        public void FinishExec(bool skipRes)
-        {
-            ReformatInputList();
+            input = new List<string>() { calc.Out().ToString() };
+            currentNum = new List<string>() { calc.Out().ToString() };
+            skip = true;
+
             DisplayInput();
-            if (!skipRes) DisplayRes();
-            txtInput.SetCurrentValue(ForegroundProperty, Brushes.LightGray);
-
-            input = new List<string>();
-            currentNum = new List<string>();
-            calc = new Calculator_Client();
-            lastOp = "";
-            firstOp = true;
-            isNegative = false;
-            blockInput = false;
+            DisplayRes();
         }
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            input.RemoveAt(input.Count - 1);
+            currentNum.RemoveAt(currentNum.Count - 1);
+            DisplayInput();
+            DisplayRes();
+        }
+
+        
         #endregion
     }
 }
