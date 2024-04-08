@@ -19,17 +19,22 @@ namespace laba2
                 if (obj is Button button)
                 {
                     string[] buttonNameSplit = ((string)button.Name).Split('_');
+
                     if (buttonNameSplit[0] != "skip") AddButtonChars(button);
-
-                    if (buttonNameSplit[0] == "digit")
+                    switch (buttonNameSplit[0])
                     {
-                        button.Click += digitBtn_Click;
-                        if (button.Content == null) button.Content = buttonNameSplit[1] == "Dot" ? "." : buttonNameSplit[1];
+                        case "digit":
+                            button.Click += digitBtn_Click;
+                            if (button.Content == null)
+                            {
+                                button.Content = buttonNameSplit[1] == "Dot" ? "." : buttonNameSplit[1];
+                            }
+                            break;
+
+                        case "operation":
+                            button.Click += operationBtn_Click;
+                            break;
                     }
-
-                    else if (buttonNameSplit[0] == "operation") 
-                        button.Click += operationBtn_Click;
-
                 }
             }
 
@@ -42,6 +47,7 @@ namespace laba2
             button.Margin = new Thickness(2, 2, 2, 2);
             button.Background = Brushes.White;
             button.BorderBrush = null;
+            button.FontSize = 15;
         }
     }
 }

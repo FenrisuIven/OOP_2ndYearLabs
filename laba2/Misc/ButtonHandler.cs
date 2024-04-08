@@ -47,8 +47,8 @@ namespace laba2
         public bool skip = false;
         private void operationBtn_Click(object sender, RoutedEventArgs e)
         {
-            string operation = (string)((Button)sender).Content;
             if (blockInput) return;
+            string operation = (string)((Button)sender).Content;
 
             switch (operation)
             {
@@ -99,7 +99,10 @@ namespace laba2
                 skipRes = true;
                 txtOutput.Text = "Invalid input";
             }
-            else calc.Root(double.Parse(currentNum.ElementAt(0)));
+            else
+            {
+                calc.Root(double.Parse(currentNum.ElementAt(0)));
+            }
 
             FinishExec(skipRes);
         }
@@ -118,7 +121,10 @@ namespace laba2
                 AddToList("ln", true);
                 input.Add(")_");
             }
-            else input.Add(" ln_");
+            else
+            {
+                input.Add(" ln_");
+            }
 
             DisplayInput();
 
@@ -134,27 +140,31 @@ namespace laba2
             bool skipRes = false;
             ReformatCurrNum();
 
-            try {
+            try
+            {
                 string num = currentNum.ElementAt(0);
-                calc.Exec(lastOp == "" ? "+" : lastOp, double.Parse(num), double.Parse(num)); 
+                calc.Exec(lastOp == "" ? "+" : lastOp, double.Parse(num), double.Parse(num));
+            }
+            catch (DivideByZeroException) 
+            {
+                skipRes = true;
+                txtOutput.Text = "Cannot divide by zero";
             }
 
-            catch (DivideByZeroException) { skipRes = true; txtOutput.Text = "Cannot divide by zero"; }
             FinishExec(skipRes);
         }
 
         private void btnC_Click(object sender, RoutedEventArgs e)
         {
-            txtInput.Text = "";
-            input = new List<string>();
-            txtOutput.Text = "";
             calc = new Calculator_Client();
-
             input = new List<string>();
             currentNum = new List<string>();
             lastOp = "";
             firstOp = true;
             isNegative = false;
+
+            txtInput.Text = "";
+            txtOutput.Text = "";
         }
 
         private void btnCE_Click(object sender, RoutedEventArgs e)

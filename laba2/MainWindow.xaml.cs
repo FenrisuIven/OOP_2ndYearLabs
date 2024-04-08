@@ -21,7 +21,8 @@ namespace laba2
         private List<string> input = new List<string>();
         private Calculator_Client calc = new Calculator_Client();
 
-        public MainWindow() { InitializeComponent(); 
+        public MainWindow() { 
+            InitializeComponent(); 
             InitializeButtons(); 
         }
 
@@ -31,10 +32,7 @@ namespace laba2
             txtInput.Text = string.Join("", input).Replace('.', ','); 
         }
 
-        public void DisplayRes()
-        {
-            txtOutput.Text = $"{calc.Out()}";
-        }
+        public void DisplayRes() => txtOutput.Text = $"{calc.Out()}";
 
         public void ReformatInputList()
         {
@@ -66,21 +64,21 @@ namespace laba2
                 operation_Ln
             };
 
-            if (!sidePannelActive)
+            if (sidePannelActive)
+            {
+                skip_AddPannel.Content = "≡";
+                grid.ColumnDefinitions.RemoveAt(grid.ColumnDefinitions.Count - 1);
+            }
+            else
             {
                 skip_AddPannel.Content = "<";
                 ColumnDefinition sideCol = new ColumnDefinition();
                 grid.ColumnDefinitions.Add(sideCol);
             }
-            else
-            {
-                skip_AddPannel.Content = "≡";
-                grid.ColumnDefinitions.RemoveAt(grid.ColumnDefinitions.Count - 1);
-            }
 
             foreach (var button in sidePannel)
             {
-                button.Visibility = button.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                button.Visibility = sidePannelActive ? Visibility.Collapsed : Visibility.Visible ;
             }
         }
         #endregion

@@ -31,12 +31,16 @@ namespace laba2
 
             if (val != "ln") input.Add(val);
 
-            if (!op) currentNum.Add(val);
-            else
+            if (op)
             {
                 ReformatInputList();
                 if (input.ElementAt(0).Length > 12) input.Add("\n");
             }
+            else
+            {
+                currentNum.Add(val);
+            }
+
             DisplayInput();
             DisplayRes();
         }
