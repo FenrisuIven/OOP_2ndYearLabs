@@ -1,0 +1,373 @@
+﻿<Window x:Class="l3t1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:l3t1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Window.Resources>
+        <AlternationConverter x:Key="AlternationConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="20"/>
+
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+
+        <!-- 
+             All of this is only the basic layout of the main window. 
+             Changes need to be made and will be made.
+             
+             TODO: 
+              - Add unique names to components to later handle the addition of settings in code;
+              - Change the layout to only have one main grid with 2 cols and rows,
+                all of the "partitioning" need to be made in other Grids using StackPanels;
+              - Add images for horses and all that stuff;
+        -->
+
+        <Label  Content="Bettings"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Right" 
+                VerticalContentAlignment="Bottom"
+                HorizontalContentAlignment="Center"
+                Foreground="Orange"
+                FontSize="28" 
+                FontFamily="Bahnschrift" 
+                BorderThickness="0,0,0,1" 
+                BorderBrush="Orange" Width="200" />
+
+        <Label  Content="Balance:"
+                Grid.Column="0" Grid.Row="1" 
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Right"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Left"
+                FontSize="20" 
+                FontFamily="Bahnschrift"/>
+
+        <Label  Name="Balance"
+                Content="$250"
+                Grid.Column="1" Grid.Row="1" 
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                FontSize="20" 
+                FontFamily="Bahnschrift"/>
+
+        <!-- Horizontal Line -->
+        <Label  Grid.Column="0" Grid.Row="1"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Right" 
+                Foreground="Orange"
+                BorderThickness="0,0,0,1" 
+                BorderBrush="Orange" Width="200" />
+        <!-- Horizontal Line -->
+
+        <!-- Button and labels initializers can an will be made -->
+        <!-- Choose Bet Amount -->
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" 
+                    VerticalAlignment="Stretch">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Button Content="◀" 
+                        Grid.Column="0" 
+                        Width="35" Height="35" 
+                        HorizontalAlignment="Right"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Margin="0,0,10,0" 
+                        Background="{x:Null}"
+                        FontSize="20"
+                        Foreground="Orange"
+                        BorderBrush="Orange"
+                        BorderThickness="2"/>
+
+                <Label  Content="$20"
+                        Grid.Column="1" Grid.Row="1" 
+                        VerticalAlignment="Stretch" 
+                        HorizontalAlignment="Stretch"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        FontSize="20" 
+                        FontFamily="Bahnschrift"
+                        Foreground="Orange"/>
+
+                <Button Content="▶" 
+                        Grid.Column="2" 
+                        Width="35" Height="35" 
+                        HorizontalAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Margin="10,0,0,0" 
+                        Background="{x:Null}"
+                        FontSize="20"
+                        Foreground="Orange"
+                        BorderBrush="Orange"
+                        BorderThickness="2"/>
+
+            </Grid>
+        </StackPanel>
+
+
+        <!-- Choose Horse -->
+        <Label  Content="Bet on horse:"
+                Grid.Column="0" Grid.Row="3"
+                Grid.ColumnSpan="3"
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch"
+                VerticalContentAlignment="Bottom"
+                HorizontalContentAlignment="Center"
+                FontSize="14" 
+                FontFamily="Bahnschrift"/>
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="3" 
+            VerticalAlignment="Stretch">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <!-- For some reason, buttons here don't work: -->
+                <Button Content="◀" 
+                        Grid.Column="0" 
+                        Width="35" Height="35" 
+                        HorizontalAlignment="Right"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Margin="0,0,10,0" 
+                        Background="{x:Null}"
+                        FontSize="20"
+                        Foreground="Orange"
+                        BorderBrush="Orange"
+                        BorderThickness="2"/>
+
+                <Label  Content="Lucilda"
+                        Grid.Column="1" Grid.Row="1" 
+                        VerticalAlignment="Stretch" 
+                        HorizontalAlignment="Stretch"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        FontSize="20" 
+                        FontFamily="Bahnschrift"
+                        Foreground="Orange"/>
+
+                <Button Content="▶" 
+                        Grid.Column="2" 
+                        Width="35" Height="35" 
+                        HorizontalAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Margin="10,0,0,0" 
+                        Background="{x:Null}"
+                        FontSize="20"
+                        Foreground="Orange"
+                        BorderBrush="Orange"
+                        BorderThickness="2"/>
+
+            </Grid>
+        </StackPanel>
+
+        <!-- Horizontal Line -->
+        <Label  Grid.Column="0" Grid.Row="4"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Right" 
+                Foreground="Orange"
+                BorderBrush="Orange"
+                BorderThickness="0,0,0,1" 
+                Width="200" />
+        <!-- Horizontal Line -->
+
+        <Button Content="BET"
+                Grid.Row="5" Grid.ColumnSpan="3"                
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                FontSize="20" 
+                FontFamily="Bahnschrift"
+                Width="125" Height="30"
+                Background="{x:Null}"
+                BorderThickness="2.5"
+                BorderBrush="Black"/>
+
+        <StackPanel Grid.Row="7" Grid.Column="4" 
+                    VerticalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch">
+            <DataGrid Name="HorsesLeaderboard" IsReadOnly="True" AutoGenerateColumns="False">
+
+                <DataGrid.Columns>
+
+                    <!-- I am 100% sure all of this can be optimised, one way or another -->
+
+                    <!-- Color column -->
+                    <DataGridTextColumn Header="Color" Binding="{Binding Color, Mode=OneWay}" Width="50" CanUserResize="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="{x:Null}" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Background" Value="{Binding Color, Mode=OneWay}" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Name column -->
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="150" CanUserResize="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Position column -->
+                    <DataGridTextColumn Header="Position"     Binding="{Binding Position}" CanUserResize="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Time column -->
+                    <DataGridTextColumn Header="Time" Binding="{Binding Time, StringFormat={}{0:mm}:{0:ss}:{0:ffffff}}" CanUserResize="False" Width="100">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Coefficient column -->
+                    <DataGridTextColumn Header="Coefficient"  Binding="{Binding Coefficient}" CanUserResize="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Bid column -->
+                    <DataGridTextColumn Header="Bid"  Binding="{Binding Bid}" CanUserResize="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </StackPanel>
+        
+    </Grid>
+</Window>
+
+<!-- Junkyard -->
+    
+<!--<Grid.ColumnDefinitions>
+    <ColumnDefinition Width="25"/>
+    <ColumnDefinition Width="100"/>
+    <ColumnDefinition Width="100"/>
+    <ColumnDefinition Width="250"/>
+    <ColumnDefinition Width="100"/>
+    <ColumnDefinition Width="*"/>
+</Grid.ColumnDefinitions>
+<Grid.RowDefinitions>
+    <RowDefinition Height="20"/>
+    <RowDefinition Height="25"/>
+    <RowDefinition Height="25"/>
+    <RowDefinition Height="25"/>
+    <RowDefinition Height="25"/>
+    <RowDefinition Height="25"/>
+</Grid.RowDefinitions>-->
+
+<!--<Label Content="Name"
+       Grid.Column="1" Grid.Row="0" 
+       VerticalAlignment="Stretch" 
+       HorizontalAlignment="Stretch"
+       VerticalContentAlignment="Center"
+       HorizontalContentAlignment="Center"
+       FontSize="10" 
+       FontFamily="Bahnschrift" />
+
+<Label Content="Position"
+       Grid.Column="2" Grid.Row="0" 
+       VerticalAlignment="Stretch" 
+       HorizontalAlignment="Stretch"
+       VerticalContentAlignment="Center"
+       HorizontalContentAlignment="Center"
+       FontSize="10" 
+       FontFamily="Bahnschrift" />
+
+<Label Content="Time"
+       Grid.Column="3" Grid.Row="0" 
+       VerticalAlignment="Stretch" 
+       HorizontalAlignment="Stretch"
+       VerticalContentAlignment="Center"
+       HorizontalContentAlignment="Center"
+       FontSize="10" 
+       FontFamily="Bahnschrift" />
+
+<Label Content="Coefficient"
+       Grid.Column="4" Grid.Row="0" 
+       VerticalAlignment="Stretch" 
+       HorizontalAlignment="Stretch"
+       VerticalContentAlignment="Center"
+       HorizontalContentAlignment="Center"
+       FontSize="10" 
+       FontFamily="Bahnschrift" />
+
+<Rectangle Fill="DarkSlateGray" 
+           Grid.Row="1" Grid.Column="0" 
+           HorizontalAlignment="Stretch" 
+           VerticalAlignment="Stretch"/>
+
+<Rectangle Fill="Aquamarine" 
+           Grid.Row="2" Grid.Column="0" 
+           HorizontalAlignment="Stretch" 
+           VerticalAlignment="Stretch"/>
+
+<Rectangle Fill="CornflowerBlue" 
+           Grid.Row="3" Grid.Column="0" 
+           HorizontalAlignment="Stretch" 
+           VerticalAlignment="Stretch"/>
+
+<Rectangle Fill="GreenYellow" 
+           Grid.Row="4" Grid.Column="0" 
+           HorizontalAlignment="Stretch" 
+           VerticalAlignment="Stretch"/>
+
+<Rectangle Fill="LightCoral" 
+           Grid.Row="5" Grid.Column="0" 
+           HorizontalAlignment="Stretch" 
+           VerticalAlignment="Stretch"/>-->
