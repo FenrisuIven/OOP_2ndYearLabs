@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:l3t1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" 
+        Height="650" Width="800"
+        MaxHeight="650" MinHeight="650">
     <Window.Resources>
         <AlternationConverter x:Key="AlternationConverter"/>
     </Window.Resources>
@@ -219,10 +221,65 @@
                 BorderThickness="2.5"
                 BorderBrush="Black"/>
 
+        
+        <!-- Track -->
+        <StackPanel Grid.Column="3" 
+                    Grid.RowSpan="7">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/Horse/Images/Background/Track.png" 
+                            TileMode="FlipY" 
+                            ViewportUnits="Absolute"                            
+                            Viewport="0,0,500,500" />
+            </StackPanel.Background>
+            <UniformGrid Name="TrackLayout" Columns="1" />
+        </StackPanel>
+        <!-- Track -->
+
+        <ListBox Name="AmountOfHorses_ListBox"
+                 Grid.Row="6" Grid.Column="4"
+                 Width="50" Height="40"
+                 VerticalAlignment="Bottom"
+                 HorizontalAlignment="Stretch"
+                 Margin="0,0,170,10"
+                 SelectionChanged="ChangeAmountOfHorses">
+            <!-- SelectionChanged makes possible to change the amount of horses -->
+            
+            <ListBoxItem Content="2" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="3" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="4" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="5" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="6" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="7" FontSize="25" HorizontalContentAlignment="Center"/>
+        </ListBox>
+
+        <Button Content="START"
+                Grid.Row="6" Grid.Column="4"                
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Stretch"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Margin="0,0,0,10"
+                FontSize="20" 
+                FontFamily="Bahnschrift"
+                Width="100" Height="40"
+                BorderThickness="2.5"
+                BorderBrush="Orange"
+                Foreground="Orange"
+                Background="White"/>
+        
+        <!-- Leaderboard -->
         <StackPanel Grid.Row="7" Grid.Column="4" 
                     VerticalAlignment="Stretch" 
-                    HorizontalAlignment="Stretch">
-            <DataGrid Name="HorsesLeaderboard" IsReadOnly="True" AutoGenerateColumns="False">
+                    HorizontalAlignment="Stretch"
+                    MaxHeight="150">
+            
+            <DataGrid Name="HorsesLeaderboard" 
+                      IsReadOnly="True" 
+                      AutoGenerateColumns="False"
+                      MaxHeight="150"
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
 
                 <DataGrid.Columns>
 
