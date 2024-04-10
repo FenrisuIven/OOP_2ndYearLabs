@@ -6,34 +6,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows;
 
 namespace l3t1
 {
-    public class Horse
+    public partial class Horse
     {
         //just a template, will be changed later on
         public SolidColorBrush Color { get; private set; }
         public string Name { get; private set; }
-        public int Position { get; private set; }
+        public int Speed { get; private set; }
         public TimeSpan Time { get; private set; }
         public int Coefficient { get; private set; }
         public int Bid { get; set; }
+        public double Position { get; set; }
 
-        private double _acceleration;
-        private Stopwatch _stopwatch;
+
+        private Stopwatch _stopwatch = new Stopwatch();
 
         //not really how it is supposed to be done, I am just testing things out
-        public Horse(SolidColorBrush color, string name, int position = 0, int coefficient = 0)
+        public Horse(SolidColorBrush color, string name, int coefficient = 0)
         {
             Name = name;
             Color = color;
-            Position = position;
+            Position = 0;
             Time = new TimeSpan(0,0,0,0, new Random().Next(9, 99999));
             //btw, Random for double (val < 1) is: new Random().NextDouble();
 
+            Speed = new Random().Next(5, 10);
+
             Coefficient = coefficient;
+
+            _stopwatch.Start();
         }
 
         public string GetTime() => $"{Time.Minutes:00}:{Time.Seconds:00}:{Time.Milliseconds:000000}";
+
+        public void ChangeAcceleration()
+        {
+            var value = new Random().Next(7, 11) / 10.0;
+            Position += Speed * value;
+        }
+        public async Task RunAsync()
+        {
+            while (true)
+            {
+                if (Position >= 600)
+                {
+                    _stopwatch.Stop();
+                    break;
+                }
+                Time = _stopwatch.Elapsed;
+                ChangeAcceleration();
+                await Task.Delay(100);
+            }
+        }
     }
 }

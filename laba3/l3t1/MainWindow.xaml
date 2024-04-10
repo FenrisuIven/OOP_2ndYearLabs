@@ -38,7 +38,7 @@
               - Add unique names to components to later handle the addition of settings in code;
               - Change the layout to only have one main grid with 2 cols and rows,
                 all of the "partitioning" need to be made in other Grids using StackPanels;
-              - Add images for horses and all that stuff;
+              - * Add running animations;
         -->
 
         <Label  Content="Bettings"
@@ -82,7 +82,7 @@
                 BorderBrush="Orange" Width="200" />
         <!-- Horizontal Line -->
 
-        <!-- Button and labels initializers can an will be made -->
+        <!-- Button and labels initializers can and will be made -->
         <!-- Choose Bet Amount -->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="3" 
                     VerticalAlignment="Stretch">
@@ -136,7 +136,7 @@
         </StackPanel>
 
 
-        <!-- Choose Horse -->
+        <!-- Bet On Horse -->
         <Label  Content="Bet on horse:"
                 Grid.Column="0" Grid.Row="3"
                 Grid.ColumnSpan="3"
@@ -221,7 +221,7 @@
                 BorderThickness="2.5"
                 BorderBrush="Black"/>
 
-        
+
         <!-- Track -->
         <StackPanel Grid.Column="3" 
                     Grid.RowSpan="7">
@@ -231,10 +231,15 @@
                             ViewportUnits="Absolute"                            
                             Viewport="0,0,500,500" />
             </StackPanel.Background>
-            <UniformGrid Name="TrackLayout" Columns="1" />
+            <UniformGrid Name="TrackLayout" 
+                         Columns="1" 
+                         Height="280" MaxHeight="280"
+                         Margin="0,120,0,0"/>
+
         </StackPanel>
         <!-- Track -->
 
+        <!-- Choose The Amount Of Horses -->
         <ListBox Name="AmountOfHorses_ListBox"
                  Grid.Row="6" Grid.Column="4"
                  Width="50" Height="40"
@@ -242,15 +247,14 @@
                  HorizontalAlignment="Stretch"
                  Margin="0,0,170,10"
                  SelectionChanged="ChangeAmountOfHorses">
-            <!-- SelectionChanged makes possible to change the amount of horses -->
-            
-            <ListBoxItem Content="2" FontSize="25" HorizontalContentAlignment="Center"/>
-            <ListBoxItem Content="3" FontSize="25" HorizontalContentAlignment="Center"/>
-            <ListBoxItem Content="4" FontSize="25" HorizontalContentAlignment="Center"/>
-            <ListBoxItem Content="5" FontSize="25" HorizontalContentAlignment="Center"/>
-            <ListBoxItem Content="6" FontSize="25" HorizontalContentAlignment="Center"/>
+
             <ListBoxItem Content="7" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="6" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="5" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="4" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="3" FontSize="25" HorizontalContentAlignment="Center"/>
         </ListBox>
+        <!-- Choose The Amount Of Horses -->
 
         <Button Content="START"
                 Grid.Row="6" Grid.Column="4"                
@@ -265,14 +269,15 @@
                 BorderThickness="2.5"
                 BorderBrush="Orange"
                 Foreground="Orange"
-                Background="White"/>
-        
+                Background="White"
+                Click="RunProgram"/>
+
         <!-- Leaderboard -->
         <StackPanel Grid.Row="7" Grid.Column="4" 
                     VerticalAlignment="Stretch" 
                     HorizontalAlignment="Stretch"
                     MaxHeight="150">
-            
+
             <DataGrid Name="HorsesLeaderboard" 
                       IsReadOnly="True" 
                       AutoGenerateColumns="False"
@@ -345,86 +350,6 @@
 
             </DataGrid>
         </StackPanel>
-        
+
     </Grid>
 </Window>
-
-<!-- Junkyard -->
-    
-<!--<Grid.ColumnDefinitions>
-    <ColumnDefinition Width="25"/>
-    <ColumnDefinition Width="100"/>
-    <ColumnDefinition Width="100"/>
-    <ColumnDefinition Width="250"/>
-    <ColumnDefinition Width="100"/>
-    <ColumnDefinition Width="*"/>
-</Grid.ColumnDefinitions>
-<Grid.RowDefinitions>
-    <RowDefinition Height="20"/>
-    <RowDefinition Height="25"/>
-    <RowDefinition Height="25"/>
-    <RowDefinition Height="25"/>
-    <RowDefinition Height="25"/>
-    <RowDefinition Height="25"/>
-</Grid.RowDefinitions>-->
-
-<!--<Label Content="Name"
-       Grid.Column="1" Grid.Row="0" 
-       VerticalAlignment="Stretch" 
-       HorizontalAlignment="Stretch"
-       VerticalContentAlignment="Center"
-       HorizontalContentAlignment="Center"
-       FontSize="10" 
-       FontFamily="Bahnschrift" />
-
-<Label Content="Position"
-       Grid.Column="2" Grid.Row="0" 
-       VerticalAlignment="Stretch" 
-       HorizontalAlignment="Stretch"
-       VerticalContentAlignment="Center"
-       HorizontalContentAlignment="Center"
-       FontSize="10" 
-       FontFamily="Bahnschrift" />
-
-<Label Content="Time"
-       Grid.Column="3" Grid.Row="0" 
-       VerticalAlignment="Stretch" 
-       HorizontalAlignment="Stretch"
-       VerticalContentAlignment="Center"
-       HorizontalContentAlignment="Center"
-       FontSize="10" 
-       FontFamily="Bahnschrift" />
-
-<Label Content="Coefficient"
-       Grid.Column="4" Grid.Row="0" 
-       VerticalAlignment="Stretch" 
-       HorizontalAlignment="Stretch"
-       VerticalContentAlignment="Center"
-       HorizontalContentAlignment="Center"
-       FontSize="10" 
-       FontFamily="Bahnschrift" />
-
-<Rectangle Fill="DarkSlateGray" 
-           Grid.Row="1" Grid.Column="0" 
-           HorizontalAlignment="Stretch" 
-           VerticalAlignment="Stretch"/>
-
-<Rectangle Fill="Aquamarine" 
-           Grid.Row="2" Grid.Column="0" 
-           HorizontalAlignment="Stretch" 
-           VerticalAlignment="Stretch"/>
-
-<Rectangle Fill="CornflowerBlue" 
-           Grid.Row="3" Grid.Column="0" 
-           HorizontalAlignment="Stretch" 
-           VerticalAlignment="Stretch"/>
-
-<Rectangle Fill="GreenYellow" 
-           Grid.Row="4" Grid.Column="0" 
-           HorizontalAlignment="Stretch" 
-           VerticalAlignment="Stretch"/>
-
-<Rectangle Fill="LightCoral" 
-           Grid.Row="5" Grid.Column="0" 
-           HorizontalAlignment="Stretch" 
-           VerticalAlignment="Stretch"/>-->
