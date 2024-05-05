@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json; 
+
+namespace laba4
+{
+    public static class Convertor<T>
+    {
+        public static void SerializeObject(string path, T obj)
+        {
+            var objList = ParseObjectsFromFile(path);
+            objList.Add(obj);
+            WriteObjectsToFile(path, objList);
+        }
+
+        private static List<T> ParseObjectsFromFile(string path)
+        {
+            if (File.Exists(path) && new FileInfo(path).Length != 0)
+            {
+                var jsonString = File.ReadAllText(path);
+                return JsonSerializer.Deserialize<List<T>>(jsonString);
+            }
+            return new List<T>();
+        }
+        private static void WriteObjectsToFile(string path, List<T> objects)
+        {
+            var jsonString = JsonSerializer.Serialize(objects);
+            File.WriteAllText(path, string.Empty);
+            File.WriteAllText(path, jsonString);
+        }
+    }
+}
