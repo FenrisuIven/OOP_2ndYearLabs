@@ -49,21 +49,41 @@ namespace laba4
         
         private void ChangeElement()
         {
+            
             var list = _parent.warehouseList.ToImmutableList();
             
             var dto = obj.MapToWarehouseDTO();
-            var idx = Index_TextBox.Text == "" ? dto.Index : int.Parse(Index_TextBox.Text);
-            var upkeep = Upkeep_TextBox.Text == "" ? dto.Upkeep : int.Parse(Upkeep_TextBox.Text);
+            int idx = dto.Index, upkeep = dto.Upkeep;
+            try
+            {
+                idx = int.Parse(Index_TextBox.Text);
+                upkeep = int.Parse(Upkeep_TextBox.Text);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show(
+                    "Some of the fields were in a wrong format! Make sure that all the fields contain numbers.", 
+                    "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                exit = false;
+                return;
+            }
             
             Warehouse clone = obj.CloneWithNewIdxAndUpkeep(idx, upkeep);
             list = list.Replace(obj, clone);
             _parent.warehouseList = new ObservableCollection<Warehouse>(list.ToList());
             _parent.listBox.ItemsSource = _parent.warehouseList;
         }
-        
+
+        private bool exit = true;
         private void ClosingSequence(object sender, CancelEventArgs e)
         {
+            if (!exit) 
+            {
+                e.Cancel = true;
+                exit = true;
+            }
             if (_confirmClose == confirmClose.DontConfirm) return;
+            
             var dto = obj.MapToWarehouseDTO();
             if (Index_TextBox.Text != dto.Index.ToString() || Upkeep_TextBox.Text != dto.Upkeep.ToString())
             {

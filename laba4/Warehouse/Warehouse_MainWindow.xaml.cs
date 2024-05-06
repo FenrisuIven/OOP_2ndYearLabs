@@ -16,34 +16,22 @@ namespace laba4
         public Warehouse_MainWindow()
         {
             InitializeComponent();
-            /*List<Crops> test = new List<Crops>
-            {
-                new Crops("Name 1", "Country 1", 1),
-                new Crops("Name 2", "Country 2", 2),
-                new Crops("Name 3", "Country 3", 3),
-            };
-            
-            foreach (var obj in test)
-            {
-                Convertor<CropsDTO>.SerializeObject(obj.GetPath, obj.MapToCropsDTO());
-            }
 
-            var crop = new Crops("Name 4", "Country 4", 4);
-            Convertor<CropsDTO>.SerializeObject(crop.GetPath,crop.MapToCropsDTO());
+             /*var crop = new Crops("Name 4", "Country 4", 4);
 
-            var rnd = new Random();
-            warehouseList = new ObservableCollection<Warehouse>();
-            for (int i = 0; i < 15; i++)
-            {
-                var warehouse = new Warehouse(i + 1, rnd.Next(1, 50));
-                warehouse.AddToWarehouse(new Cargo(crop, Delivery.Supplier, 1, 10,1, DateTime.Today));
-                warehouse.AddToWarehouse(new Cargo(crop, Delivery.Supplier, 1, 10,1, DateTime.Today));
-                warehouse.AddToWarehouse(new Cargo(crop, Delivery.Supplier, 1, 10,1, DateTime.Today));
-                warehouse.AddToWarehouse(new Cargo(crop, Delivery.Supplier, 1, 10,1, DateTime.Today));
-                
-                warehouseList.Add(warehouse);
-            }*/
-            listBox.ItemsSource = warehouseList;
+             var rnd = new Random();
+             warehouseList = new ObservableCollection<Warehouse>();
+             for (int i = 0; i < 15; i++)
+             {
+                 var warehouse = new Warehouse(i + 1, rnd.Next(1, 50));
+                 warehouse.AddToWarehouse(new Cargo(crop, Delivery.Supplier, 1, 10,1, DateTime.Today));
+                 warehouse.AddToWarehouse(new Cargo(crop, Delivery.Supplier, 1, 10,1, DateTime.Today));
+                 warehouse.AddToWarehouse(new Cargo(crop, Delivery.Supplier, 1, 10,1, DateTime.Today));
+                 warehouse.AddToWarehouse(new Cargo(crop, Delivery.Supplier, 1, 10,1, DateTime.Today));
+                 
+                 warehouseList.Add(warehouse);
+             }
+            listBox.ItemsSource = warehouseList;*/
         }
 
         private void RemoveElementFromList(object sender, RoutedEventArgs e)

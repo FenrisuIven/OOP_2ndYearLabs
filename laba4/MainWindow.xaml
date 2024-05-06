@@ -7,8 +7,37 @@
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="500" Width="750"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Background="DarkGray">
     <Grid>
+        <Button Click="OpenCropsJsonFileLocation" Margin="10,10,0,0">
+            <TextBlock Text="Open crops.json file location" />
+        </Button>
+        <Button Click="OpenWarehouseJsonFileLocation" Margin="130,10,0,0" Width="130">
+            <TextBlock Text="Open warehouse.json file location" />
+        </Button> 
         
+        <Button Click="OpenWarehouseMainForm" Margin="10,90,0,0">
+            <TextBlock Text="Open Warehouse main form" />
+        </Button> 
+        <Button Click="OpenCropsMainForm" Margin="130,90,0,0">
+            <TextBlock Text="Open Crops main form" />
+        </Button> 
+        <Button Click="OpenCargoMainForm" Margin="250,90,0,0" Width="90">
+            <TextBlock Text="Open Cargo main form" />
+        </Button> 
     </Grid>
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="110" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
 </Window>

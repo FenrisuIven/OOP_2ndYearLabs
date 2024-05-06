@@ -83,7 +83,25 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="Cargo\Cargo_AddNewCargo.xaml.cs">
+          <DependentUpon>Cargo_AddNewCargo.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Cargo\Cargo_ChangeCargoInfo.xaml.cs">
+          <DependentUpon>Cargo_ChangeCargoInfo.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Cargo\Cargo_MainWindow.xaml.cs">
+          <DependentUpon>Cargo_MainWindow.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Cargo\Cargo_Presets.cs" />
+        <Compile Include="Crops\Crops_AddNewCrop.xaml.cs">
+          <DependentUpon>Crops_AddNewCrop.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Crops\Crops_ChangeCropInfo.xaml.cs">
+          <DependentUpon>Crops_ChangeCropInfo.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Crops\Crops_MainWindow.xaml.cs">
+          <DependentUpon>Crops_MainWindow.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Warehouse\Warehouse.cs" />
         <Compile Include="Warehouse\WarehouseDTO.cs" />
         <Compile Include="Warehouse\Warehouse_AddNewWarehouse.xaml.cs">
@@ -95,6 +113,12 @@
         <Compile Include="Warehouse\Warehouse_MainWindow.xaml.cs">
           <DependentUpon>Warehouse_MainWindow.xaml</DependentUpon>
         </Compile>
+        <Page Include="Cargo\Cargo_AddNewCargo.xaml" />
+        <Page Include="Cargo\Cargo_ChangeCargoInfo.xaml" />
+        <Page Include="Cargo\Cargo_MainWindow.xaml" />
+        <Page Include="Crops\Crops_AddNewCrop.xaml" />
+        <Page Include="Crops\Crops_ChangeCropInfo.xaml" />
+        <Page Include="Crops\Crops_MainWindow.xaml" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -136,6 +160,7 @@
         <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="Cargo\cargo.json" />
       <Content Include="Crops\crops.json" />
       <Content Include="Warehouse\warehouse.json" />
     </ItemGroup>

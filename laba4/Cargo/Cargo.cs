@@ -13,6 +13,10 @@ namespace laba4
         private int _priceForTransportation;
         private DateTime _deliveryTime;
 
+        
+        private static string _path = "C:/Users/Nova/source/repos/OOP_Labs/laba4/Cargo/cargo.json";
+        public static string GetPath => _path;
+        
         public Cargo(Crops crop, Delivery delivery, int amount, int priceForOne, int priceForTransportation, DateTime deliveryTime)
         {
             _crop = crop;
@@ -30,9 +34,30 @@ namespace laba4
                 Crop = _crop.MapToCropsDTO(),
                 Delivery = _delivery,
                 Amount = _amount,
-                PriceForOne = _priceForOne
+                PriceForOne = _priceForOne,
+                PriceForTransportation = _priceForTransportation,
+                DeliveryTime = _deliveryTime
             };
         }
+
+        public static Cargo MapToCargo(CargoDTO dto)
+        {
+            return new Cargo(
+                Crops.MapToCrops(dto.Crop),
+                dto.Delivery,
+                dto.Amount,
+                dto.PriceForOne,
+                dto.PriceForTransportation,
+                dto.DeliveryTime);
+        }
+
+        public override string ToString() => 
+            $"Crop name: {_crop.MapToCropsDTO().Name}; " +
+            $"Delivery: {_delivery}; " +
+            $"Amount: {_amount}; " +
+            $"Price for one: {_priceForOne}; " +
+            $"Price for transportation: {_priceForTransportation}; " +
+            $"Delivery time: {_deliveryTime}";
 
         public object Clone()
         {
