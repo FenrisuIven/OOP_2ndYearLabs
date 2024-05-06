@@ -17,7 +17,6 @@
         
             <Rectangle Grid.Row="0" Fill="DarkGray"/>
             <Rectangle Grid.Row="1" Fill="Gray"/>
-            <Rectangle Grid.Row="2" Fill="DimGray"/>
         
             <ListBox Name="listBox"
                      Margin="15"

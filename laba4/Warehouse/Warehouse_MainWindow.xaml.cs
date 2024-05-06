@@ -54,15 +54,12 @@ namespace laba4
         }
         private void SerializeList(object sender, RoutedEventArgs e)
         {
-            var dtoList = warehouseList.Select(elem => elem.MapToWarehouseDTO());
-            var jsonString = JsonSerializer.Serialize(dtoList);
-            File.WriteAllText(Warehouse.GetPath,string.Empty);
-            File.WriteAllText(Warehouse.GetPath,jsonString);
+            var dtoList = warehouseList.Select(elem => elem.MapToWarehouseDTO()).ToList();
+            Writer<WarehouseDTO>.WriteObjectsToFile(Warehouse.GetPath, dtoList);
         }
         private void DeserializeList(object sender, RoutedEventArgs e)
         {
-            var jsonString = File.ReadAllText(Warehouse.GetPath);
-            var dtoList = JsonSerializer.Deserialize<List<WarehouseDTO>>(jsonString);
+            var dtoList = Writer<WarehouseDTO>.ParseObjectsFromFile(Warehouse.GetPath);;
             var list = dtoList.Select(elem => Warehouse.MapToWarehouse(elem));
             warehouseList = new ObservableCollection<Warehouse>(list);
             listBox.ItemsSource = warehouseList;

@@ -1,5 +1,3 @@
-using System;
-
 namespace laba4
 {
     public enum Delivery

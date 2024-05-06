@@ -129,7 +129,7 @@
         </Compile>
         <Compile Include="Cargo\Cargo.cs" />
         <Compile Include="Cargo\CargoDTO.cs" />
-        <Compile Include="Convertor\Convertor.cs" />
+        <Compile Include="Writer\Writer.cs" />
         <Compile Include="Crops\Crops.cs" />
         <Compile Include="Crops\CropsDTO.cs" />
         <Compile Include="Delivery\Delivery.cs" />

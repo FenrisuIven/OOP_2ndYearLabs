@@ -6,7 +6,7 @@ using System.Text.Json;
 
 namespace laba4
 {
-    public static class Convertor<T>
+    public static class Writer<T>
     {
         public static void SerializeObject(string path, T obj)
         {
@@ -15,7 +15,7 @@ namespace laba4
             WriteObjectsToFile(path, objList);
         }
 
-        private static List<T> ParseObjectsFromFile(string path)
+        public static List<T> ParseObjectsFromFile(string path)
         {
             if (File.Exists(path) && new FileInfo(path).Length != 0)
             {
@@ -24,7 +24,7 @@ namespace laba4
             }
             return new List<T>();
         }
-        private static void WriteObjectsToFile(string path, List<T> objects)
+        public static void WriteObjectsToFile(string path, List<T> objects)
         {
             var jsonString = JsonSerializer.Serialize(objects);
             File.WriteAllText(path, string.Empty);

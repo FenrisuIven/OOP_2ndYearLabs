@@ -50,15 +50,12 @@ namespace laba4
         }
         private void SerializeList(object sender, RoutedEventArgs e)
         {
-            var dtoList = cropsList.Select(elem => elem.MapToCropsDTO());
-            var jsonString = JsonSerializer.Serialize(dtoList);
-            File.WriteAllText(Crops.GetPath,string.Empty);
-            File.WriteAllText(Crops.GetPath,jsonString);
+            var dtoList = cropsList.Select(elem => elem.MapToCropsDTO()).ToList();
+            Writer<CropsDTO>.WriteObjectsToFile(Crops.GetPath, dtoList);
         }
         private void DeserializeList(object sender, RoutedEventArgs e)
         {
-            var jsonString = File.ReadAllText(Crops.GetPath);
-            var dtoList = JsonSerializer.Deserialize<List<CropsDTO>>(jsonString);
+            var dtoList = Writer<CropsDTO>.ParseObjectsFromFile(Crops.GetPath);
             var list = dtoList.Select(elem => Crops.MapToCrops(elem));
             cropsList = new ObservableCollection<Crops>(list);
             listBox.ItemsSource = cropsList;
