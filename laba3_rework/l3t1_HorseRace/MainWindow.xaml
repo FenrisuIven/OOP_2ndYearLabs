@@ -5,8 +5,238 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:l3t1_HorseRace"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" 
+        ResizeMode="NoResize"
+        Height="650" Width="900">
+    <Window.Resources>
+        <Style TargetType="Label" x:Key="PlainLabel">
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Bahnschrift"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="PlainTextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Bahnschrift"/>
+        </Style>
+        <Style TargetType="Border" x:Key="OrangeBottomBorder">
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="Orange"/>
+        </Style>
+        <Style TargetType="Button" x:Key="OrangeButtonWhiteBG">
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Orange"/>
+            <Setter Property="Foreground" Value="Orange"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="DataGridTextBlock">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.9*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         
+        <Frame Grid.Row="0" Grid.Column="1" Source="/RaceLines.xaml"/>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                        Style="{StaticResource OrangeBottomBorder}"/>
+                <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                        Style="{StaticResource OrangeBottomBorder}"/>
+                <Border Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+                        Style="{StaticResource OrangeBottomBorder}"/>
+                
+                <Label  Content="Bettings"
+                        Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                        Style="{StaticResource PlainLabel}"
+                        HorizontalContentAlignment="Center"
+                        Foreground="Orange"
+                        FontSize="28" />
+
+                <Label  Content="Balance:"
+                        Grid.Row="1" Grid.Column="1"
+                        Style="{StaticResource PlainLabel}"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Left"/>
+
+                <Label  Name="Balance"
+                        Content="$250"
+                        Grid.Row="1" Grid.Column="2"  
+                        Style="{StaticResource PlainLabel}"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"/>
+
+                <Label  Content="Bet on horse:"
+                        Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                        Style="{StaticResource PlainLabel}"
+                        HorizontalContentAlignment="Center"
+                        FontSize="14"/>
+                
+                <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
+                            VerticalAlignment="Stretch">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.7*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Content="◀" 
+                                Grid.Column="0" 
+                                Style="{StaticResource OrangeButtonWhiteBG}"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,10,0"/>
+
+                        <Label  Content="$20"
+                                Grid.Column="1"
+                                Style="{StaticResource PlainLabel}"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Foreground="Orange"/>
+
+                        <Button Content="▶" 
+                                Grid.Column="2" 
+                                Style="{StaticResource OrangeButtonWhiteBG}"
+                                HorizontalAlignment="Left"
+                                Margin="10,0,0,0"/>
+
+                    </Grid>
+                </StackPanel>
+                
+                <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
+                            VerticalAlignment="Stretch">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.7*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Content="◀" 
+                                Grid.Column="0" 
+                                Style="{StaticResource OrangeButtonWhiteBG}"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,10,0"/>
+
+                        <TextBlock Name="ChosenHorseName"
+                                 Text="Lucilda"
+                                 Grid.Column="1"
+                                 Style="{StaticResource PlainTextBlock}"
+                                 Foreground="Orange"
+                                 TextWrapping="NoWrap"
+                                 TextTrimming="CharacterEllipsis"/>
+
+                        <Button Content="▶" 
+                                Grid.Column="2" 
+                                Style="{StaticResource OrangeButtonWhiteBG}"
+                                HorizontalAlignment="Left"
+                                Margin="10,0,0,0"/>
+
+                    </Grid>
+                </StackPanel>
+                
+                
+                <Button Content="BET"
+                        Click="OnBetClick"
+                        Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
+                        Style="{StaticResource OrangeButtonWhiteBG}"            
+                        FontFamily="Bahnschrift"
+                        Width="125" Height="30"
+                        Foreground="DimGray"
+                        BorderBrush="DimGray"/>
+                
+                
+            </Grid>
+        </StackPanel>
+        
+        <DataGrid Grid.Row="1" Grid.Column="1"
+                  Name="HorsesLeaderboard" 
+                  IsReadOnly="True" 
+                  AutoGenerateColumns="False"
+                  MaxHeight="250"
+                  ScrollViewer.CanContentScroll="True" 
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+
+                <DataGrid.Columns>
+
+                    <!-- Color column -->
+                    <DataGridTextColumn Header="Color" 
+                                        Binding="{Binding Color, Mode=OneWay}" 
+                                        Width="50" CanUserResize="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource DataGridTextBlock}">
+                                <Setter Property="Foreground" Value="{x:Null}" />
+                                <Setter Property="Background" Value="{Binding Color, Mode=OneWay}" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Name" 
+                                        Binding="{Binding Name}" 
+                                        Width="150" CanUserResize="False" 
+                                        ElementStyle="{StaticResource DataGridTextBlock}"/>
+
+                    <DataGridTextColumn Header="Position" 
+                                        Binding="{Binding Position, StringFormat={}{0:0.0}}" 
+                                        CanUserResize="False"
+                                        ElementStyle="{StaticResource DataGridTextBlock}"/>
+
+                    <DataGridTextColumn Header="Time" 
+                                        Binding="{Binding Time, StringFormat={}{0:mm}:{0:ss}:{0:ffff}}" 
+                                        Width="100" CanUserResize="False"
+                                        ElementStyle="{StaticResource DataGridTextBlock}"/>
+
+                    <DataGridTextColumn Header="Coefficient"  
+                                        Binding="{Binding Coefficient}" 
+                                        Width="80" CanUserResize="False"
+                                        ElementStyle="{StaticResource DataGridTextBlock}"/>
+
+                    <DataGridTextColumn Header="Bid"  Binding="{Binding Bid}" 
+                                        CanUserResize="False"
+                                        ElementStyle="{StaticResource DataGridTextBlock}"/>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
     </Grid>
 </Window>
