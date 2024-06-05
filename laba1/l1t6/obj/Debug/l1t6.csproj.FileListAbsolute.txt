@@ -1,0 +1,7 @@
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t6\bin\Debug\l1t6.exe.config
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t6\bin\Debug\l1t6.exe
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t6\bin\Debug\l1t6.pdb
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t6\obj\Debug\l1t6.csproj.AssemblyReference.cache
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t6\obj\Debug\l1t6.csproj.CoreCompileInputs.cache
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t6\obj\Debug\l1t6.exe
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t6\obj\Debug\l1t6.pdb

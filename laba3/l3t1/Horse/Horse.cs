@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
+using System.ComponentModel;
 
 namespace l3t1
 {
@@ -24,6 +25,7 @@ namespace l3t1
 
         private Stopwatch _stopwatch = new Stopwatch();
 
+
         //not really how it is supposed to be done, I am just testing things out
         public Horse(SolidColorBrush color, string name, int coefficient = 0)
         {
@@ -39,8 +41,7 @@ namespace l3t1
 
             _stopwatch.Start();
         }
-
-        public string GetTime() => $"{Time.Minutes:00}:{Time.Seconds:00}:{Time.Milliseconds:000000}";
+        public bool TimerRunning() => _stopwatch.IsRunning;
 
         public void ChangeAcceleration()
         {
@@ -51,7 +52,7 @@ namespace l3t1
         {
             while (true)
             {
-                if (Position >= 600)
+                if (Position >= 400)
                 {
                     _stopwatch.Stop();
                     break;

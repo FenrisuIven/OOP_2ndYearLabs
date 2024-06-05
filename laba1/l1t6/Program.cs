@@ -17,7 +17,7 @@ namespace l1t6
             CompareSortMethods(Ethalon_BubbleSort, StudentMethods.Student_BubbleSort);
 
             Console.WriteLine("Quick sort");
-            CompareSortMethods(Ethalon_QuickSort, StudentMethods.Student_BubbleSort);
+            CompareSortMethods(Ethalon_QuickSort, StudentMethods.Student_QuickSort);
 
             Console.ReadKey();
         }
@@ -44,7 +44,7 @@ namespace l1t6
             }
             catch (Exception ex) { Console.WriteLine("Exception in Ethalon sort: " + ex.Message); }
 
-            var cancelToken = new CancellationTokenSource(TimeSpan.FromMilliseconds(1000000));
+            var cancelToken = new CancellationTokenSource(TimeSpan.FromMilliseconds(ethalonTime * 3 + 50));
             try
             {
                 Stopwatch st = Stopwatch.StartNew();

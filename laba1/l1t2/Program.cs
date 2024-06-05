@@ -20,8 +20,8 @@ namespace l1t2
 
             Func<int, bool> func = (elem) => elem % k == 0;
 
-            int[] finalArr_Own = ArrayMod.Execute_Own(startArr, k, func);
-            int[] finalArr_Linq = ArrayMod.Execute_Linq(startArr, k, func);
+            int[] finalArr_Own = ArrayMod.Execute_Own(startArr, func);
+            int[] finalArr_Linq = ArrayMod.Execute_Linq(startArr, func);
 
             Console.Write("\nStart arr:\t\t" + string.Join(" ", startArr));
             Console.Write("\nFinal arr (own):\t" + string.Join(" ", finalArr_Own));

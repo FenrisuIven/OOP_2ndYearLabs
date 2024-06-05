@@ -28,8 +28,7 @@ namespace laba2
                 CustomNumLogic(Math.E.ToString());
                 return;
             }
-
-            if (digit == "0" && lastOp == "÷" && currentNum == null) return;
+            
             if (digit == ".") digit = ",";
             AddToList(digit, false);
         }
@@ -77,7 +76,6 @@ namespace laba2
                 else FirstOp();
                 firstOp = false;
             }
-            else if (skip) skip = false;
             else
             {
                 ReformatCurrNum();

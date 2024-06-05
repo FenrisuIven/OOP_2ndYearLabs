@@ -12,6 +12,7 @@ namespace laba4
         private List<Cargo> _cargoesInWarehouse = new List<Cargo>();
 
         private static string _path = "C:/Users/Nova/source/repos/OOP_Labs/laba4/Warehouse/warehouse.json";
+        //private static string _path = "C:/Users/Nova/source/repos/OOP_Labs/laba4/Warehouse/warehouse_cargoesWarehouse_<idx>.json";
         public static string GetPath => _path;
         
         public Warehouse(int idxOfWarehouse, int upkeepPrice)

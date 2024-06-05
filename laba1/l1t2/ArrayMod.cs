@@ -8,7 +8,7 @@ namespace l1t2
 {
     public class ArrayMod
     {
-        public static int[] Execute_Own(int[] arr, int k, Func<int, bool> func)
+        public static int[] Execute_Own(int[] arr, Func<int, bool> func)
         {
             int[] res = new int[arr.Length];
             int count = 0;
@@ -19,7 +19,7 @@ namespace l1t2
             Array.Resize(ref res, count);
             return res;
         }
-        public static int[] Execute_Linq(int[] arr, int k, Func<int, bool> func) => 
+        public static int[] Execute_Linq(int[] arr, Func<int, bool> func) => 
             arr.Where(elem => func(elem)).ToArray();
     }
 }

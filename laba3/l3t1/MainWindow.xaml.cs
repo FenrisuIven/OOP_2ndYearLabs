@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.CodeDom;
+using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Text;
 using System.Windows;
@@ -104,8 +105,11 @@ namespace l3t1
 
             var lauchHorses = LaunchHorses();
             var changePositionHorses = ChangePositionHorses();
+            var updateRatingPositionHorses = UpdateRatingPositionHorses();
 
-            await Task.WhenAll(lauchHorses, changePositionHorses);
+            await Task.WhenAll(lauchHorses, changePositionHorses, updateRatingPositionHorses);
+
+            MessageBox.Show($"Race has finished. {horses.ElementAt(0).Name} has won!");
         }
         public async Task LaunchHorses()
         {
@@ -137,65 +141,52 @@ namespace l3t1
         }
         private void PositionChanges(Image horse, int i) =>
             horse.Margin = new Thickness(horses[i].Position % 500, 0, 0, 0);
+
+        private async Task UpdateRatingPositionHorses()
+        {
+            _cancellToken = new CancellationTokenSource();
+            await Task.Run(() => 
+            {
+                while (!_cancellToken.Token.IsCancellationRequested)
+                {
+                    if (horses.All(elem => !elem.TimerRunning()))
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            ChangeLeaderboardRating();
+                        });
+                        if (!string.IsNullOrEmpty(Bet_HorseName) && horses.Any(elem => elem.Name == Bet_HorseName))
+                        {
+                            BankAccount += betPrice * 2;
+                            Balance.Content = $"{BankAccount}";
+                        }
+                        StopProcess();
+                    }
+                    Dispatcher.Invoke(() =>
+                    {
+                        HorsesLeaderboard.Items.Refresh();
+                    });
+                }
+            });
+        }
+        public void StopProcess()
+        {
+            _cancellToken?.Cancel();
+        }
+
         // Everything considering the race part
 
 
-        // Handlers for changing the amount of horses in race
-        // I think I can (or should) move it somewhere, instead of keeping it here in MainWindow
-        private void ChangeAmountOfHorses(object sender, SelectionChangedEventArgs e)
-        {
-            if (AmountOfHorses_ListBox.SelectedItem != null)
-            {
-                ListBoxItem selectedItem = (ListBoxItem)AmountOfHorses_ListBox.SelectedItem;
-                int horseCount = int.Parse(selectedItem.Content.ToString());
-
-                if (horseCount > horses.Count)
-                {
-                    AddHorses(horseCount);
-                }
-                else if (horseCount < horses.Count)
-                {
-                    RemoveHorses(horseCount);
-                }
-
-            }
-        }
-        private void AddHorses(int amount)
-        {
-            for(int i = horses.Count; i < amount; i++)
-            {
-                horses.Add(new Horse(Horse.GenerateColor(horses), Horse.GenerateName(horses)));
-            }
-            AmountOfHorses_ListBox.Items.Refresh();
-            AddImages();
-        }
-        private void RemoveHorses(int finalAmount)
-        {
-            for (int i = horses.Count; i > finalAmount; i--)
-            {
-                horses.RemoveAt(horses.Count - 1);
-            }
-            AmountOfHorses_ListBox.Items.Refresh();
-            // TODO: Add "RemoveImages();"
-        }
-        public void AddImages()
-        {
-            for (int i = imagesPresentCount; i < horses.Count; i++, imagesPresentCount++)
-            {
-                Image img = GenerateImageObject(horses[i]); 
-                TrackLayout.Children.Add(img);
-                _horsesImages.Add(img);
-            }
-        }
-        //TODO: Add "RemoveImages();"
-        // Handlers for changing the amount of horses in race
-
-
         // Changing the leaderboard
-        public void ChangePlace()
+        public void ChangeLeaderboardRating()
         {
-            //tbd
+            horses = new ObservableCollection<Horse>(horses.OrderBy(elem => elem.Time.TotalMilliseconds));
+            HorsesLeaderboard.ItemsSource = horses;
+            HorsesLeaderboard.Items.Refresh();
         }
+
+        
         // Changing the leaderboard
+
     }
 }

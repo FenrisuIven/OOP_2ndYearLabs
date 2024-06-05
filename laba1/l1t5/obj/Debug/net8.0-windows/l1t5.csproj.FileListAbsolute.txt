@@ -1,0 +1,17 @@
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\bin\Debug\net8.0-windows\l1t5.exe
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\bin\Debug\net8.0-windows\l1t5.deps.json
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\bin\Debug\net8.0-windows\l1t5.runtimeconfig.json
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\bin\Debug\net8.0-windows\l1t5.dll
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\bin\Debug\net8.0-windows\l1t5.pdb
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\l1t5.Form1.resources
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\l1t5.csproj.GenerateResource.cache
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\l1t5.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\l1t5.AssemblyInfoInputs.cache
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\l1t5.AssemblyInfo.cs
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\l1t5.csproj.CoreCompileInputs.cache
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\l1t5.sourcelink.json
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\l1t5.dll
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\refint\l1t5.dll
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\l1t5.pdb
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\l1t5.genruntimeconfig.cache
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t5\obj\Debug\net8.0-windows\ref\l1t5.dll

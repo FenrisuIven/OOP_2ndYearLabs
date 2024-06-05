@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace laba2
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public void InitializeButtons()
         {
@@ -18,7 +18,7 @@ namespace laba2
             {
                 if (obj is Button button)
                 {
-                    string[] buttonNameSplit = ((string)button.Name).Split('_');
+                    string[] buttonNameSplit = button.Name.Split('_');
 
                     if (buttonNameSplit[0] != "skip") AddButtonChars(button);
                     switch (buttonNameSplit[0])

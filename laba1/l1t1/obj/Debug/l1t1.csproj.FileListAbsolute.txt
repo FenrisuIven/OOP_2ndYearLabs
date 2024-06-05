@@ -1,0 +1,7 @@
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t1\bin\Debug\l1t1.exe.config
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t1\bin\Debug\l1t1.exe
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t1\bin\Debug\l1t1.pdb
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t1\obj\Debug\l1t1.csproj.AssemblyReference.cache
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t1\obj\Debug\l1t1.csproj.CoreCompileInputs.cache
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t1\obj\Debug\l1t1.exe
+C:\Users\Nova\source\repos\OOP_Labs\laba1\l1t1\obj\Debug\l1t1.pdb

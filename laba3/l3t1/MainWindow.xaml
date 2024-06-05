@@ -172,7 +172,8 @@
                         BorderBrush="Orange"
                         BorderThickness="2"/>
 
-                <Label  Content="Lucilda"
+                <Label  Name="ChosenHorseName"
+                        Content="Lucilda"
                         Grid.Column="1" Grid.Row="1" 
                         VerticalAlignment="Stretch" 
                         HorizontalAlignment="Stretch"
@@ -209,6 +210,7 @@
         <!-- Horizontal Line -->
 
         <Button Content="BET"
+                Click="Bet"
                 Grid.Row="5" Grid.ColumnSpan="3"                
                 VerticalAlignment="Stretch" 
                 HorizontalAlignment="Stretch"
@@ -253,6 +255,7 @@
             <ListBoxItem Content="5" FontSize="25" HorizontalContentAlignment="Center"/>
             <ListBoxItem Content="4" FontSize="25" HorizontalContentAlignment="Center"/>
             <ListBoxItem Content="3" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="2" FontSize="25" HorizontalContentAlignment="Center"/>
         </ListBox>
         <!-- Choose The Amount Of Horses -->
 
@@ -311,7 +314,7 @@
                     </DataGridTextColumn>
 
                     <!-- Position column -->
-                    <DataGridTextColumn Header="Position"     Binding="{Binding Position}" CanUserResize="False">
+                    <DataGridTextColumn Header="Position"     Binding="{Binding Position, StringFormat={}{0:0.0}}" CanUserResize="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
@@ -320,7 +323,7 @@
                     </DataGridTextColumn>
 
                     <!-- Time column -->
-                    <DataGridTextColumn Header="Time" Binding="{Binding Time, StringFormat={}{0:mm}:{0:ss}:{0:ffffff}}" CanUserResize="False" Width="100">
+                    <DataGridTextColumn Header="Time" Binding="{Binding Time, StringFormat={}{0:mm}:{0:ss}:{0:ffff}}" CanUserResize="False" Width="100">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />

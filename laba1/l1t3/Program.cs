@@ -12,7 +12,7 @@ namespace l1t3
     {
         static void Main(string[] args)
         {
-            Func<double, double>[] series = {
+            Func<int, double>[] series = {
                 (num) => 1f / Math.Pow(2, num),
                 (num) => 1f / Factorial(num), 
                 (num) => 1f / UnevenPow(num)
@@ -37,7 +37,7 @@ namespace l1t3
             Console.ReadKey();
         }
 
-        public static double CalculateSeries(Func<double, double> func, double accuracy)
+        public static double CalculateSeries(Func<int, double> func, double accuracy)
         {
             double init = func(0);
             double funcVal = init;
@@ -51,13 +51,14 @@ namespace l1t3
             return sum;
         }
 
-        static double Factorial(double num)
+        static double Factorial(int num)
         {
             float res = 1;
             for (int i = 2; i <= num; i++) res *= i;
             return res;
         }
-        static double UnevenPow(double num) => 
+        int count;
+        static double UnevenPow(int num) => 
             Math.Pow(2, num) * (num % 2 == 0 ? -1f : 1f);
 
         static string Output(double num) => 
