@@ -219,7 +219,7 @@
                 Margin="0,0,0,10"
                 Width="100" Height="40"
                 BorderThickness="2.5"
-                Click="RunProgram"/>
+                Click="StartRace"/>
         
         <DataGrid Grid.Row="1" Grid.Column="1"
                   Name="HorsesLeaderboard" 

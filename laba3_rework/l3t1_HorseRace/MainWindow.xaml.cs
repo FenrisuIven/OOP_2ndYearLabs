@@ -16,7 +16,7 @@ namespace l3t1_HorseRace
 {
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Horse> horses = new();
+        private ObservableCollection<Horse> horses = new();
         private List<Image> _horsesImages = new();
         private int imagesPresentCount;
 
@@ -24,7 +24,7 @@ namespace l3t1_HorseRace
         private HorseSelectionHandler localHSHandler = new();
         private BetSelectionHandler localBSHandler = new();
         
-        private CancellationTokenSource _cancellToken; //unused
+        private CancellationTokenSource _cancelToken; //unused
         
         
 
@@ -35,8 +35,8 @@ namespace l3t1_HorseRace
             Balance.DataContext = LocalPlayer;
             
             TrackFrame.Content = new RaceLines();
-            InitializeHorseList();
-            InitializeImageList();
+            AddHorses(2);
+            //InitializeImageList();
             
             UpdateLocalHSMaxIdx();
             ChangeSelectedBetLabel();
@@ -44,16 +44,7 @@ namespace l3t1_HorseRace
             HorsesLeaderboard.ItemsSource = horses;
 
         }
-
-        private void InitializeHorseList()
-        {
-            horses = new ObservableCollection<Horse>
-            {
-                new (Brushes.DarkSlateGray, "Lucilda"),
-                new (Brushes.GreenYellow, "Emanuel")
-            };
-        }
-        private void InitializeImageList()
+        /*private void InitializeImageList()
         {
             foreach (var horse in horses)
             {
@@ -62,9 +53,9 @@ namespace l3t1_HorseRace
                 _horsesImages.Add(img);
                 imagesPresentCount++;
             }
-        }
+        }*/
 
-        private async void RunProgram(object sender, RoutedEventArgs e)
+        private async void StartRace(object sender, RoutedEventArgs e)
         {
             var lauchHorses = LaunchHorses();
             var changePositionHorses = ChangePositionHorses();
@@ -72,8 +63,15 @@ namespace l3t1_HorseRace
 
             await Task.WhenAll(lauchHorses, changePositionHorses, updateRatingPositionHorses);
 
-            MessageBox.Show($"Race has finished. {horses.First().Name} has won!\nYou got: ${horses.First().Bid * 2}");
-            LocalPlayer.BankAccount += horses.First().Bid * horses.First().Coefficient;
+            if (horses.First().Name == LocalPlayer.Bet_HorseName)
+            {
+                LocalPlayer.BankAccount += horses.First().Bid * horses.First().Coefficient;
+                MessageBox.Show($"Race has finished. {horses.First().Name} has won!\nYou got: ${horses.First().Bid * 2}");
+            }
+            else
+            {
+                MessageBox.Show($"Race has finished. {horses.First().Name} has won!\nUnfortunately, you don't get anything");
+            }
         }
         public async Task LaunchHorses()
         {
@@ -86,7 +84,7 @@ namespace l3t1_HorseRace
         }
         private async Task ChangePositionHorses()
         {
-            _cancellToken = new CancellationTokenSource();
+            _cancelToken = new CancellationTokenSource();
             await Task.Run(() =>
             {
                 while (true)
@@ -99,7 +97,7 @@ namespace l3t1_HorseRace
                         }
                     });
                     Task.Delay(100).Wait();
-                    if (_cancellToken.Token.IsCancellationRequested) break;
+                    if (_cancelToken.Token.IsCancellationRequested) break;
                 }
             });
         }
@@ -107,10 +105,10 @@ namespace l3t1_HorseRace
             horse.Margin = new Thickness(horses[i].Position % 700, 0, 0, 0);
         private async Task UpdateRatingPositionHorses()
         {
-            _cancellToken = new();
+            _cancelToken = new();
             await Task.Run(() => 
             {
-                while (!_cancellToken.Token.IsCancellationRequested)
+                while (!_cancelToken.Token.IsCancellationRequested)
                 {
                     if (horses.All(elem => !elem.TimerRunning()))
                     {
@@ -118,7 +116,7 @@ namespace l3t1_HorseRace
                         {
                             ChangeLeaderboardRating();
                         });
-                        _cancellToken.Cancel();
+                        _cancelToken.Cancel();
                     }
                     Dispatcher.Invoke(() =>
                     {
@@ -127,7 +125,7 @@ namespace l3t1_HorseRace
                 }
             });
         }
-        public void ChangeLeaderboardRating()
+        private void ChangeLeaderboardRating()
         {
             horses = new ObservableCollection<Horse>(horses.OrderBy(elem => elem.Time.TotalMilliseconds));
             HorsesLeaderboard.ItemsSource = horses;
@@ -137,10 +135,9 @@ namespace l3t1_HorseRace
         private void OnBetClick(object sender, RoutedEventArgs e)
         {
             if (LocalPlayer.BankAccount - localBSHandler.GetBet() < 0) return;
-            LocalPlayer.BankAccount -= localBSHandler.GetBet();
             
-            LocalPlayer.Bet_HorseName = ChosenHorseName.Text;
-            horses.First(elem => elem.Name == LocalPlayer.Bet_HorseName).Bid += localBSHandler.GetBet();
+            LocalPlayer.Bet(localBSHandler.GetBet(), ChosenHorseName.Text);
+            horses.First(elem => elem.Name == ChosenHorseName.Text).Bid += localBSHandler.GetBet();
             HorsesLeaderboard.Items.Refresh();
         }
         
@@ -163,8 +160,10 @@ namespace l3t1_HorseRace
                 UpdateLocalHSMaxIdx();
             }
         }
+        
         private void AddHorses(int amount)
         {
+            if (horses == null) horses = new();
             for (int i = horses.Count; i < amount; i++)
             {
                 horses.Add(new Horse(HorseGenerator.GenerateColor(horses), HorseGenerator.GenerateName(horses)));
@@ -174,6 +173,7 @@ namespace l3t1_HorseRace
         }
         private void RemoveHorses(int finalAmount)
         {
+            if (horses == null) return;
             RemoveImages(horses.Count - finalAmount);
             for (int i = horses.Count; i > finalAmount; i--)
             {
@@ -181,7 +181,7 @@ namespace l3t1_HorseRace
             }
             AmountOfHorses_ListBox.Items.Refresh();
         }
-        public void AddImages()
+        private void AddImages()
         {
             for (int i = imagesPresentCount; i < horses.Count; i++, imagesPresentCount++)
             {
@@ -190,7 +190,7 @@ namespace l3t1_HorseRace
                 _horsesImages.Add(img);
             }
         }
-        public void RemoveImages(int amount)
+        private void RemoveImages(int amount)
         {
             for (int i = 0; i < amount; i++)
             {
@@ -201,8 +201,6 @@ namespace l3t1_HorseRace
             
         }
 
-        
-        
         
         private void UpdateLocalHSMaxIdx()
         {
