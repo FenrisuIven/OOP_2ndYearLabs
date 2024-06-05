@@ -39,24 +39,26 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="FontFamily" Value="Bahnschrift"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="DataGridTextBlock">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
         </Style>
     </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>
-
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.9*"/>
             <RowDefinition/>
+            <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
         
-        <Frame Grid.Row="0" Grid.Column="1" Source="/RaceLines.xaml"/>
+        <Frame Name="TrackFrame" Grid.Row="0" Grid.Column="1" />
+        
         <StackPanel Grid.Row="0" Grid.Column="0">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -155,21 +157,23 @@
                                 Grid.Column="0" 
                                 Style="{StaticResource OrangeButtonWhiteBG}"
                                 HorizontalAlignment="Right"
-                                Margin="0,0,10,0"/>
+                                Margin="0,0,10,0"
+                                Click="PrevHorse_Selection"/>
 
                         <TextBlock Name="ChosenHorseName"
-                                 Text="Lucilda"
-                                 Grid.Column="1"
-                                 Style="{StaticResource PlainTextBlock}"
-                                 Foreground="Orange"
-                                 TextWrapping="NoWrap"
-                                 TextTrimming="CharacterEllipsis"/>
+                                   Text=" "
+                                   Grid.Column="1"
+                                   Style="{StaticResource PlainTextBlock}"
+                                   Foreground="Orange"
+                                   TextWrapping="NoWrap"
+                                   TextTrimming="CharacterEllipsis"/>
 
                         <Button Content="▶" 
                                 Grid.Column="2" 
                                 Style="{StaticResource OrangeButtonWhiteBG}"
                                 HorizontalAlignment="Left"
-                                Margin="10,0,0,0"/>
+                                Margin="10,0,0,0"
+                                Click="NextHorse_Selection"/>
 
                     </Grid>
                 </StackPanel>
@@ -187,6 +191,31 @@
                 
             </Grid>
         </StackPanel>
+        
+        <ListBox Name="AmountOfHorses_ListBox"
+                 Grid.Row="0" Grid.Column="1"
+                 Width="50" Height="40"
+                 VerticalAlignment="Bottom"
+                 HorizontalAlignment="Stretch"
+                 Margin="0,0,170,10"
+                 SelectionChanged="ChangeAmountOfHorses">
+
+            <ListBoxItem Content="7" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="6" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="5" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="4" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="3" FontSize="25" HorizontalContentAlignment="Center"/>
+            <ListBoxItem Content="2" FontSize="25" HorizontalContentAlignment="Center"/>
+        </ListBox>
+        
+        <Button Content="START"
+                Grid.Row="0" Grid.Column="1"  
+                Style="{StaticResource OrangeButtonWhiteBG}"              
+                VerticalAlignment="Bottom" 
+                Margin="0,0,0,10"
+                Width="100" Height="40"
+                BorderThickness="2.5"
+                Click="RunProgram"/>
         
         <DataGrid Grid.Row="1" Grid.Column="1"
                   Name="HorsesLeaderboard" 

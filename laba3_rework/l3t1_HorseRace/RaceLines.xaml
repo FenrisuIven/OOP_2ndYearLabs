@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:l3t1_HorseRace"
       mc:Ignorable="d"
       Title="RaceLines"
-      Height="500" Width="750">
+      Height="500" Width="500">
     <Grid>
         <StackPanel>
             <StackPanel.Background>
@@ -18,8 +18,9 @@
             
             <UniformGrid Name="TrackLayout" 
                          Columns="1" 
-                         Height="320" MaxHeight="320"
-                         Margin="0,120,0,0"/>
+                         Height="280" MaxHeight="280"
+                         Margin="0,120,0,0">
+            </UniformGrid>
         </StackPanel>
     </Grid>
 </Page>
