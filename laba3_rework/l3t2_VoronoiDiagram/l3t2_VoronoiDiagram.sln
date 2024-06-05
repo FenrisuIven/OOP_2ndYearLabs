@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "l3t2_VoronoiDiagram", "l3t2_VoronoiDiagram\l3t2_VoronoiDiagram.csproj", "{C5D7CA69-96FB-4875-82AE-D173962D55B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "l3t2_VoronoiDiagram", "l3t2_VoronoiDiagram\l3t2_VoronoiDiagram.csproj", "{C5FD8888-BE9C-4A43-80DB-BC91B0092652}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C5D7CA69-96FB-4875-82AE-D173962D55B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5D7CA69-96FB-4875-82AE-D173962D55B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5D7CA69-96FB-4875-82AE-D173962D55B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5D7CA69-96FB-4875-82AE-D173962D55B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5FD8888-BE9C-4A43-80DB-BC91B0092652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5FD8888-BE9C-4A43-80DB-BC91B0092652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5FD8888-BE9C-4A43-80DB-BC91B0092652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5FD8888-BE9C-4A43-80DB-BC91B0092652}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
