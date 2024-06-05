@@ -12,7 +12,7 @@ namespace l3t1_HorseRace.Classes
         public int Speed { get; private set; }
         public TimeSpan Time { get; private set; }
         public int Coefficient { get; private set; }
-        public int Bid { get; set; }
+        public double Bid { get; set; }
         public double Position { get; set; }
 
 
@@ -26,9 +26,8 @@ namespace l3t1_HorseRace.Classes
             Position = 0;
             Time = new TimeSpan();
 
-            Speed = HorseGenerator.speedRnd.Next(5,10);
-
-            Coefficient = coefficient;
+            Speed = HorseGenerator.rnd.Next(5,10);
+            Coefficient = HorseGenerator.rnd.Next(2,5);
 
             _stopwatch.Start();
         }
@@ -36,14 +35,14 @@ namespace l3t1_HorseRace.Classes
 
         public void ChangeAcceleration()
         {
-            var value = new Random().Next(7, 11) / 10.0;
+            var value = HorseGenerator.rnd.Next(7, 15) / 10.0;
             Position += Speed * value;
         }
         public async Task RunAsync()
         {
             while (true)
             {
-                if (Position >= 390)
+                if (Position >= 580)
                 {
                     _stopwatch.Stop();
                     break;

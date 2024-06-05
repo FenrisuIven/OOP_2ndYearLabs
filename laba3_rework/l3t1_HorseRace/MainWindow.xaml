@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:l3t1_HorseRace"
+        xmlns:model="clr-namespace:l3t1_HorseRace.Classes"
         mc:Ignorable="d"
         Title="MainWindow" 
         ResizeMode="NoResize"
@@ -95,8 +96,9 @@
                         HorizontalContentAlignment="Left"/>
 
                 <Label  Name="Balance"
-                        Content="$250"
                         Grid.Row="1" Grid.Column="2"  
+                        Content="{Binding Path=BankAccount}"
+                        ContentStringFormat="c"
                         Style="{StaticResource PlainLabel}"
                         VerticalContentAlignment="Center"
                         HorizontalContentAlignment="Center"/>
@@ -123,9 +125,11 @@
                                 Grid.Column="0" 
                                 Style="{StaticResource OrangeButtonWhiteBG}"
                                 HorizontalAlignment="Right"
-                                Margin="0,0,10,0"/>
+                                Margin="0,0,10,0"
+                                Click="PrevBet_Selection"/>
 
-                        <Label  Content="$20"
+                        <Label  Name="BetSelection"
+                                ContentStringFormat="c"
                                 Grid.Column="1"
                                 Style="{StaticResource PlainLabel}"
                                 VerticalContentAlignment="Center"
@@ -136,7 +140,8 @@
                                 Grid.Column="2" 
                                 Style="{StaticResource OrangeButtonWhiteBG}"
                                 HorizontalAlignment="Left"
-                                Margin="10,0,0,0"/>
+                                Margin="10,0,0,0"
+                                Click="NextBet_Selection"/>
 
                     </Grid>
                 </StackPanel>
@@ -180,13 +185,12 @@
                 
                 
                 <Button Content="BET"
-                        Click="OnBetClick"
                         Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
-                        Style="{StaticResource OrangeButtonWhiteBG}"            
-                        FontFamily="Bahnschrift"
+                        Style="{StaticResource OrangeButtonWhiteBG}" 
                         Width="125" Height="30"
                         Foreground="DimGray"
-                        BorderBrush="DimGray"/>
+                        BorderBrush="DimGray"
+                        Click="OnBetClick"/>
                 
                 
             </Grid>

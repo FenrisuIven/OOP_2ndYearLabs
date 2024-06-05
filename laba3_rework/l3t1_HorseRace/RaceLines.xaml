@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:l3t1_HorseRace"
       mc:Ignorable="d"
       Title="RaceLines"
-      Height="500" Width="500">
+      Height="500" Width="665">
     <Grid>
         <StackPanel>
             <StackPanel.Background>

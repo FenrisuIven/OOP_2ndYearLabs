@@ -8,7 +8,7 @@ namespace l3t1_HorseRace.Classes;
 
 public class HorseGenerator
 {
-    public static Random speedRnd = new();
+    public static Random rnd = new();
     public static List<SolidColorBrush> colors = new List<SolidColorBrush>
     {
         Brushes.Aquamarine,

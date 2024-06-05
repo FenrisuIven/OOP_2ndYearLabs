@@ -6,12 +6,11 @@ using System.Windows.Media;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Collections.Generic;
-using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+
 using l3t1_HorseRace.Classes;
-using l3t1_HorseRace.ImageHandlres;
 using l3t1_HorseRace.ViewModels;
+using l3t1_HorseRace.ImageHandlres;
 
 namespace l3t1_HorseRace
 {
@@ -23,6 +22,7 @@ namespace l3t1_HorseRace
 
         private Player LocalPlayer = new();
         private HorseSelectionHandler localHSHandler = new();
+        private BetSelectionHandler localBSHandler = new();
         
         private CancellationTokenSource _cancellToken; //unused
         
@@ -32,13 +32,17 @@ namespace l3t1_HorseRace
         public MainWindow()
         {
             InitializeComponent();
+            Balance.DataContext = LocalPlayer;
+            
             TrackFrame.Content = new RaceLines();
             InitializeHorseList();
             InitializeImageList();
             
             UpdateLocalHSMaxIdx();
+            ChangeSelectedBetLabel();
             ChangeSelectedHorseLabel(localHSHandler.CurrentIdx);
             HorsesLeaderboard.ItemsSource = horses;
+
         }
 
         private void InitializeHorseList()
@@ -60,9 +64,6 @@ namespace l3t1_HorseRace
             }
         }
 
-        
-
-
         private async void RunProgram(object sender, RoutedEventArgs e)
         {
             var lauchHorses = LaunchHorses();
@@ -71,7 +72,8 @@ namespace l3t1_HorseRace
 
             await Task.WhenAll(lauchHorses, changePositionHorses, updateRatingPositionHorses);
 
-            MessageBox.Show($"Race has finished. {horses.ElementAt(0).Name} has won!");
+            MessageBox.Show($"Race has finished. {horses.First().Name} has won!\nYou got: ${horses.First().Bid * 2}");
+            LocalPlayer.BankAccount += horses.First().Bid * horses.First().Coefficient;
         }
         public async Task LaunchHorses()
         {
@@ -93,7 +95,7 @@ namespace l3t1_HorseRace
                     {
                         for (int i = 0; i < horses.Count; i++)
                         {
-                            PositionChanges(_horsesImages[i], i);
+                            PositionChange(_horsesImages[i], i);
                         }
                     });
                     Task.Delay(100).Wait();
@@ -101,12 +103,11 @@ namespace l3t1_HorseRace
                 }
             });
         }
-        private void PositionChanges(Image horse, int i) =>
-            horse.Margin = new Thickness(horses[i].Position % 500, 0, 0, 0);
-
+        private void PositionChange(Image horse, int i) =>
+            horse.Margin = new Thickness(horses[i].Position % 700, 0, 0, 0);
         private async Task UpdateRatingPositionHorses()
         {
-            _cancellToken = new CancellationTokenSource();
+            _cancellToken = new();
             await Task.Run(() => 
             {
                 while (!_cancellToken.Token.IsCancellationRequested)
@@ -117,12 +118,7 @@ namespace l3t1_HorseRace
                         {
                             ChangeLeaderboardRating();
                         });
-                        if (!string.IsNullOrEmpty(LocalPlayer.Bet_HorseName) && horses.Any(elem => elem.Name == LocalPlayer.Bet_HorseName))
-                        {
-                            LocalPlayer.BankAccount += LocalPlayer.betPrice * 2;
-                            Balance.Content = $"{LocalPlayer.BankAccount}";
-                        }
-                        StopProcess();
+                        _cancellToken.Cancel();
                     }
                     Dispatcher.Invoke(() =>
                     {
@@ -131,11 +127,6 @@ namespace l3t1_HorseRace
                 }
             });
         }
-        public void StopProcess()
-        {
-            _cancellToken?.Cancel();
-        }
-
         public void ChangeLeaderboardRating()
         {
             horses = new ObservableCollection<Horse>(horses.OrderBy(elem => elem.Time.TotalMilliseconds));
@@ -145,14 +136,14 @@ namespace l3t1_HorseRace
         
         private void OnBetClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Bet");
-            if (LocalPlayer.BankAccount - LocalPlayer.betPrice < 0) return;
-            LocalPlayer.BankAccount -= LocalPlayer.betPrice;
-            Balance.Content = $"{LocalPlayer.BankAccount}";
+            if (LocalPlayer.BankAccount - localBSHandler.GetBet() < 0) return;
+            LocalPlayer.BankAccount -= localBSHandler.GetBet();
+            
             LocalPlayer.Bet_HorseName = ChosenHorseName.Text;
-            horses.First(elem => elem.Name == LocalPlayer.Bet_HorseName).Bid = LocalPlayer.betPrice;
+            horses.First(elem => elem.Name == LocalPlayer.Bet_HorseName).Bid += localBSHandler.GetBet();
             HorsesLeaderboard.Items.Refresh();
         }
+        
         private void ChangeAmountOfHorses(object sender, SelectionChangedEventArgs e)
         {
             if (AmountOfHorses_ListBox.SelectedItem != null)
@@ -210,6 +201,9 @@ namespace l3t1_HorseRace
             
         }
 
+        
+        
+        
         private void UpdateLocalHSMaxIdx()
         {
             localHSHandler.MaxIdx = horses.Count - 1;
@@ -220,5 +214,18 @@ namespace l3t1_HorseRace
         private void NextHorse_Selection(object sender, RoutedEventArgs e)=> ChangeSelectedHorseLabel(localHSHandler.NextHorse());
         public void ChangeSelectedHorseLabel(int idx) => ChosenHorseName.Text = horses[idx].Name;
         private void UpdateCurrentSelectedHorse() => ChosenHorseName.Text = horses[localHSHandler.CurrentIdx].Name;
+
+        private void PrevBet_Selection(object sender, RoutedEventArgs e) => ChangeSelectedBetLabel(localBSHandler.PrevBet());
+        private void NextBet_Selection(object sender, RoutedEventArgs e) => ChangeSelectedBetLabel(localBSHandler.NextBet());
+
+        public void ChangeSelectedBetLabel(int? idx = null)
+        {
+            if (idx == null)
+            {
+                BetSelection.Content = localBSHandler.GetBet();
+                return;
+            }
+            BetSelection.Content = localBSHandler.GetBet(idx!.Value);
+        }
     }
 }

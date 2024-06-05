@@ -58,6 +58,7 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="Classes\BetSelectionHandler.cs" />
         <Compile Include="Classes\Horse.cs" />
         <Compile Include="Classes\HorseGenerator.cs" />
         <Compile Include="Classes\HorseSelectionHandler.cs" />
