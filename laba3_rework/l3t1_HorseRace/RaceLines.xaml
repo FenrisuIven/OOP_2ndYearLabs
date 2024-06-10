@@ -19,8 +19,7 @@
             <UniformGrid Name="TrackLayout" 
                          Columns="1" 
                          Height="280" MaxHeight="280"
-                         Margin="0,120,0,0">
-            </UniformGrid>
+                         Margin="0,120,0,0"/>
         </StackPanel>
     </Grid>
 </Page>

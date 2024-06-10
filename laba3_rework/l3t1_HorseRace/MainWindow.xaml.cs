@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Threading;
-using System.Windows.Media;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Collections.Generic;
@@ -24,11 +22,9 @@ namespace l3t1_HorseRace
         private HorseSelectionHandler localHSHandler = new();
         private BetSelectionHandler localBSHandler = new();
         
-        private CancellationTokenSource _cancelToken; //unused
-        
+        private CancellationTokenSource _cancelToken;
         
 
-        // First initializing
         public MainWindow()
         {
             InitializeComponent();
@@ -36,7 +32,6 @@ namespace l3t1_HorseRace
             
             TrackFrame.Content = new RaceLines();
             AddHorses(2);
-            //InitializeImageList();
             
             UpdateLocalHSMaxIdx();
             ChangeSelectedBetLabel();
@@ -44,24 +39,14 @@ namespace l3t1_HorseRace
             HorsesLeaderboard.ItemsSource = horses;
 
         }
-        /*private void InitializeImageList()
-        {
-            foreach (var horse in horses)
-            {
-                Image img = ImageGenerator.GenerateImageObject(horse);
-                RaceLinesVM.Instance.ImgAdditionRequested(img);
-                _horsesImages.Add(img);
-                imagesPresentCount++;
-            }
-        }*/
 
         private async void StartRace(object sender, RoutedEventArgs e)
         {
-            var lauchHorses = LaunchHorses();
-            var changePositionHorses = ChangePositionHorses();
-            var updateRatingPositionHorses = UpdateRatingPositionHorses();
+            var launchHorses = LaunchHorses();
+            var changePositionHorses = ChangeVisualPositions();
+            var updateRatingPositionHorses = UpdateRatingPositions();
 
-            await Task.WhenAll(lauchHorses, changePositionHorses, updateRatingPositionHorses);
+            await Task.WhenAll(launchHorses, changePositionHorses, updateRatingPositionHorses);
 
             if (horses.First().Name == LocalPlayer.Bet_HorseName)
             {
@@ -82,9 +67,9 @@ namespace l3t1_HorseRace
             }
             await Task.WhenAll(tasks);
         }
-        private async Task ChangePositionHorses()
+        private async Task ChangeVisualPositions()
         {
-            _cancelToken = new CancellationTokenSource();
+            _cancelToken = new();
             await Task.Run(() =>
             {
                 while (true)
@@ -103,7 +88,7 @@ namespace l3t1_HorseRace
         }
         private void PositionChange(Image horse, int i) =>
             horse.Margin = new Thickness(horses[i].Position % 700, 0, 0, 0);
-        private async Task UpdateRatingPositionHorses()
+        private async Task UpdateRatingPositions()
         {
             _cancelToken = new();
             await Task.Run(() => 

@@ -2,6 +2,7 @@ using System;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using l3t1_HorseRace.Classes;
 
 namespace l3t1_HorseRace.ImageHandlres;
@@ -24,7 +25,7 @@ public class ImageGenerator
         resImage.Source = GetColoredImage(horseTemplate, mask, horse.Color);
         resImage.Width = 75;
         resImage.Height = 75;
-            
+        
         return resImage;
     }
 
