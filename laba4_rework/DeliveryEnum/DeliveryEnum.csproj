@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <TargetFramework>net481</TargetFramework>
+        <LangVersion>12</LangVersion>
+    </PropertyGroup>
+
+</Project>

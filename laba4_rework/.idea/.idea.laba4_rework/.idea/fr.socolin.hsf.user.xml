@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="fr.socolin.rider.plugins.hsf.settings.storage.UserSettingsStorageService">
+    <option name="rules" value="ruleId=0de97367-6dd4-4aac-88ad-b96f7127b47e&amp;pattern=%5E%28%5Cw%2BClass%29%24&amp;order=0&amp;icon=none&amp;priority=1&amp;foregroundColorHex=%238d2d6&amp;disabled=false/ruleId=d40cf911-cc7c-411e-97d6-3b44542d9d71&amp;pattern=%5E%28%5Cw%2BEnum%29%24&amp;order=0&amp;icon=none&amp;priority=1&amp;foregroundColorHex=%238d2d6&amp;disabled=false" />
+  </component>
+</project>

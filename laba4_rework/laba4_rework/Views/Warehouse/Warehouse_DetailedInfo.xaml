@@ -1,0 +1,25 @@
+<Window x:Class="laba4_rework.Views.Warehouse_DetailedInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:laba4_rework.Views"
+        mc:Ignorable="d"
+        Title="Warehouse_DetailedInfo" Height="450" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.23*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,10,0">
+            <Label Content="Index:"/>
+            <Label Content="Upkeep:"/>
+            <Label Content="Cargoes:"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,10,0">
+            <Label Content="placeholder text"/>
+            <Label Content="placeholder text"/>
+            <Label Content="placeholder text"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>CropsClass</AssemblyName>
+        <RootNamespace>CropsClass</RootNamespace>
+        <TargetFramework>net481</TargetFramework>
+        <LangVersion>12</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Crops\" />
+    </ItemGroup>
+
+</Project>
