@@ -43,17 +43,16 @@ namespace laba4_rework.Views
 
             var rnd = new Random();
             var crop = new Crops(
-                Cargo_Presets.names[rnd.Next(Cargo_Presets.names.Length)],
-                Cargo_Presets.countries[rnd.Next(Cargo_Presets.countries.Length)],
-                rnd.Next(1,4));
+                CropsPresets.names[rnd.Next(CropsPresets.names.Length)],
+                CropsPresets.countries[rnd.Next(CropsPresets.countries.Length)],
+                (Season)rnd.Next(1,4));
             //var name = Name_TextBox.Text == "" ? $"Crop {list.Count + 1}" : Name_TextBox.Text;
             var newCargo = new Cargo(crop, 
                 Delivery.Supplier, 
                 rnd.Next(50),
                 rnd.Next(50),
                 rnd.Next(50),
-                DateTime.Now
-                );
+                DateTime.Now);
 
             list.Add(newCargo);
             _parent.cargoList = list;

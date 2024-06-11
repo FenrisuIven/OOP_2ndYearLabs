@@ -60,7 +60,7 @@ public class Cargo : ICloneable, IComparable<Cargo>
     {
         if (_crops == null)
         {
-            throw new ArgumentException("Cannot clone CargoCargoClassct that has any of it's fields null.");
+            throw new ArgumentException("Cannot clone Cargo that has any of it's fields null.");
         }
         
         return new Cargo(_crops, _delivery, _amount, _priceForOne, _priceForTransportation, _deliveryTime);
@@ -68,7 +68,6 @@ public class Cargo : ICloneable, IComparable<Cargo>
 
     public int CompareTo(Cargo obj)
     {
-        if (obj == null) return 1;
         return _amount.CompareTo(obj._amount);
     }
 }

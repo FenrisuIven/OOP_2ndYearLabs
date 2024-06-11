@@ -51,9 +51,9 @@ namespace laba4_rework.Views
             for (int i = 0; i < amountOfCrops; i++)
             {
                 var crop = new Crops(
-                    Cargo_Presets.names[rnd.Next(Cargo_Presets.names.Length)],
-                    Cargo_Presets.countries[rnd.Next(Cargo_Presets.countries.Length)],
-                    rnd.Next(1,4));
+                    CropsPresets.names[rnd.Next(CropsPresets.names.Length)],
+                    CropsPresets.countries[rnd.Next(CropsPresets.countries.Length)],
+                    (Season)rnd.Next(1,4));
                 var cargo = new Cargo(crop, 
                     Delivery.Supplier, 
                     rnd.Next(20), 

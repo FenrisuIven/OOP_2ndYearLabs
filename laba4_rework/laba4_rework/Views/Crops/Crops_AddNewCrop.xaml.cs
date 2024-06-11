@@ -41,7 +41,7 @@ namespace laba4_rework.Views
             var name = Name_TextBox.Text == "" ? $"Crop {list.Count + 1}" : Name_TextBox.Text;
             var country = Country_TextBox.Text == "" ? "Ukraine" : Country_TextBox.Text;
             var season = Country_TextBox.Text == "" ? 1 : int.Parse(Season_TextBox.Text);
-            var newCrops = new Crops(name, country, season);
+            var newCrops = new Crops(name, country, (Season)season);
 
             list.Add(newCrops);
             _parent.cropsList = list;

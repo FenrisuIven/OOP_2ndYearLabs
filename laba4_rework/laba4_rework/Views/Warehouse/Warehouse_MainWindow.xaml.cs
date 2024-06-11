@@ -29,8 +29,9 @@ namespace laba4_rework.Views
                 warehouseList.Add(warehouse);
             }
             listBox.ItemsSource = warehouseList;*/
-            
-            
+
+            var win = new Warehouse_DetailedInfo();
+            win.ShowDialog();
         }
 
         private void RemoveElementFromList(object sender, RoutedEventArgs e)

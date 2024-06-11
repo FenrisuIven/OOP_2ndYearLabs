@@ -9,11 +9,22 @@ public class Warehouse : ICloneable
     private int _idxOfWarehouse;
     private int _upkeepPrice;
     private List<Cargo> _cargoesInWarehouse = new();
+
+    public List<CargoDTO> GetCargoesList()
+    {
+        return _cargoesInWarehouse.Select(elem => elem.MapToCargoDTO()).ToList();
+    }
     
     public Warehouse(int idxOfWarehouse, int upkeepPrice)
     {
         _idxOfWarehouse = idxOfWarehouse;
         _upkeepPrice = upkeepPrice;
+    }
+    public Warehouse(int idxOfWarehouse, int upkeepPrice, List<Cargo> list)
+    {
+        _idxOfWarehouse = idxOfWarehouse;
+        _upkeepPrice = upkeepPrice;
+        _cargoesInWarehouse = list;
     }
 
     private int GetTotalValue()
@@ -32,32 +43,13 @@ public class Warehouse : ICloneable
         {
             Index = _idxOfWarehouse,
             Upkeep = _upkeepPrice,
-            AmountOfCargos = _cargoesInWarehouse.Count
+            CargoesDTO = GetCargoesList()
         };
     }
 
     public static Warehouse MapToWarehouse(WarehouseDTO dto)
     {
-        var res = new Warehouse(dto.Index, dto.Upkeep);
-
-        var rnd = new Random();
-        for (int i = 0; i < dto.AmountOfCargos; i++)
-        {
-            var crop = new Crops(
-                Cargo_Presets.names[rnd.Next(Cargo_Presets.names.Length)],
-                Cargo_Presets.countries[rnd.Next(Cargo_Presets.countries.Length)],
-                rnd.Next(1,4));
-            var cargo = new Cargo(crop, 
-                Delivery.Supplier, 
-                1, 
-                1, 
-                1, 
-                DateTime.Now);
-            
-            res.AddToWarehouse(cargo);
-        }
-        
-        return res;
+        return new Warehouse(dto.Index, dto.Upkeep, dto.CargoesDTO.Select(Cargo.MapToCargo).ToList());
     }
     
     public void AddToWarehouse(Cargo cargo) => _cargoesInWarehouse.Add(cargo);

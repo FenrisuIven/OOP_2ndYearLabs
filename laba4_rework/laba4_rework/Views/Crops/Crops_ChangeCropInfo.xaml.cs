@@ -54,9 +54,9 @@ namespace laba4_rework.Views
             var dto = obj.MapToCropsDTO();
             var name = Name_TextBox.Text == "" ? dto.Name : Name_TextBox.Text;
             var country = Country_TextBox.Text == "" ? dto.Country : Country_TextBox.Text;
-            var season = Season_TextBox.Text == "" ? dto.Season : int.Parse(Season_TextBox.Text);
+            var season = Season_TextBox.Text == "" ? (int)dto.Season : int.Parse(Season_TextBox.Text);
             
-            var changed = new Crops(name, country, season);
+            var changed = new Crops(name, country, (Season)season);
             list = list.Replace(obj, changed);
             _parent.cropsList = new ObservableCollection<Crops>(list.ToList());
             _parent.listBox.ItemsSource = _parent.cropsList;
