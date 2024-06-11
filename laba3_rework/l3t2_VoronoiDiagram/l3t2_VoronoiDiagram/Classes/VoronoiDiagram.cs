@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,19 +13,20 @@ namespace l3t2_VoronoiDiagram.Classes
     public class VoronoiDiagram
     {
         private Random _rnd = new();
+        
         public Stopwatch DrawTimer;
-
         public string GetElapsedMilliseconds
         {
             get => DrawTimer.ElapsedMilliseconds + " ms";
         }
+        
+        public Bitmap BMP;
         public int BMPWidth;
         public int BMPHeight;
 
-        public Bitmap BMP;
-
         private List<VoronoiPoint> _points = new();
         public int AmountPfRandomPoints = 2;
+        
         public void Initialize()
         {
             BMP = new(BMPWidth, BMPHeight);
@@ -36,15 +38,16 @@ namespace l3t2_VoronoiDiagram.Classes
         {
             var p = _points.Find(elem => Distance(elem, newPoint) <= 5);
             
-            if (p == null)
-            {
-                _points.Add(newPoint);
-            }
-            else
+            if (p != null)
             {
                 _points.Remove(p);
             }
+            else
+            {
+                _points.Add(newPoint);
+            }
             
+            RedrawVertices();
             RequestInvalidation?.Invoke();
         }
         public void GenerateRandomPoints(int amount)
@@ -54,9 +57,8 @@ namespace l3t2_VoronoiDiagram.Classes
             GeneratePoints();
         }
 
-        private void GeneratePoints(bool newPoints = false)
+        private void GeneratePoints()
         {
-            if (newPoints) _points = new();
             for (int i = _points.Count; i < AmountPfRandomPoints; i++)
             {
                 _points.Add(new VoronoiPoint(_rnd.Next(BMPWidth), _rnd.Next(BMPHeight)));
@@ -106,7 +108,7 @@ namespace l3t2_VoronoiDiagram.Classes
         public void DrawMultiThread()
         {
             DrawTimer.Restart();
-            using var g = Graphics.FromImage(BMP);
+            var g = Graphics.FromImage(BMP);
             
             int segmentWidth = (int)Math.Ceiling((double)BMPWidth / Environment.ProcessorCount);
             int segmentHeight = BMPHeight;
@@ -162,14 +164,19 @@ namespace l3t2_VoronoiDiagram.Classes
         
         public void ClearBMP()
         {
-            using (Graphics graphics = Graphics.FromImage(BMP))
-            {
-                _points = new();
-                graphics.Clear(Color.White);
-            }
+            var g = Graphics.FromImage(BMP);
+            _points = new();
+            g.Clear(Color.White);
+            
             DrawTimer.Reset();
             RequestInvalidation?.Invoke();
             RequestTimeLabelUpdate?.Invoke();
+        }
+        public void RedrawVertices()
+        {
+            var g = Graphics.FromImage(BMP);
+            g.Clear(Color.White);
+            DrawVertices();
         }
         
         public delegate void Parameterless();

@@ -9,6 +9,9 @@ public class Colors
 
     public static Color GetRandomColor()
     {
-        return Color.FromArgb(_rnd.Next(50,256), _rnd.Next(50,256),_rnd.Next(50,256));
+        int r = _rnd.Next(50, 256);
+        int g = _rnd.Next(50, 256);
+        int b = _rnd.Next(50, 256);
+        return Color.FromArgb(r, g, b);
     }
 }
